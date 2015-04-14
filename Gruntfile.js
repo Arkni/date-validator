@@ -51,8 +51,6 @@ grunt.initConfig({
 				pretty: true
 			},
 			src: [
-				"changelog.txt",
-				"demo/**/*.*",
 				"dist/*.js",
 				"Gruntfile.js",
 				"lib/*.*",
