@@ -1,0 +1,52 @@
+{
+	"name": "date-validator",
+	"title": "Date Validator",
+	"description": "A date validator for jquery-validation plugin",
+	"version": "1.0.0",
+	"homepage": "https://github.com/Arkni/date-validator/",
+	"author": {
+		"name": "Arkni Brahim",
+		"email": "brahim.arkni@gmail.com",
+		"url": "https://github.com/Arkni"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git://github.com/Arkni/date-validator.git"
+	},
+	"bugs": {
+		"url": "https://github.com/Arkni/date-validator/issues"
+	},
+	"licenses": [
+		{
+			"type": "MIT",
+			"url": "http://www.opensource.org/licenses/MIT"
+		}
+	],
+	"scripts": {
+		"test": "grunt",
+		"prepublish": "grunt"
+	},
+	"files": ["dist/date-validator.js"],
+	"main": "dist/date-validator.js",
+	"dependencies": {},
+	"devDependencies": {
+		"commitplease": "2.0.0",
+		"grunt": "0.4.4",
+		"grunt-contrib-compress": "0.7.0",
+		"grunt-contrib-concat": "0.3.0",
+		"grunt-contrib-copy": "0.5.0",
+		"grunt-contrib-jshint": "^0.10.0",
+		"grunt-contrib-qunit": "0.4.0",
+		"grunt-contrib-uglify": "0.4.0",
+		"grunt-contrib-watch": "0.6.0",
+		"grunt-jscs": "1.0.0",
+		"grunt-text-replace": "0.3.11"
+	},
+	"keywords": [
+		"jquery",
+		"jquery-plugin",
+		"date",
+		"validation",
+		"validate"
+	]
+}
