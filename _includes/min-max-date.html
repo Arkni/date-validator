@@ -1,0 +1,66 @@
+<div class="datevalidator-example">
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="#minmax-form-tab" data-toggle="tab">Try it</a></li>
+        <li><a href="#minmax-html-tab" data-toggle="tab">HTML</a></li>
+        <li><a href="#minmax-js-tab" data-toggle="tab">JS</a></li>
+    </ul>
+
+    <div class="tab-content">
+        <div class="tab-pane active" id="minmax-form-tab">
+            <form id="minMaxForm" method="post" class="form-horizontal">
+                <div class="form-group">
+                    <label class="col-md-3 control-label">Date</label>
+                    <div class="col-md-6">
+                        <input type="text" class="form-control" name="date" placeholder="DD-MM-YYYY" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-6 col-md-offset-3">
+                        <button type="submit" class="btn btn-default">Validate</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div class="tab-pane" id="minmax-html-tab">
+{% highlight html %}
+<form id="minMaxForm" method="post" class="form-horizontal">
+  <div class="form-group">
+    <label class="col-md-3 control-label">Date</label>
+    <div class="col-md-6">
+      <input type="text" class="form-control" name="date" placeholder="DD-MM-YYYY" />
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-md-6 col-md-offset-3">
+      <button type="submit" class="btn btn-default">Validate</button>
+    </div>
+  </div>
+</form>
+{% endhighlight %}
+        </div>
+
+        <div class="tab-pane" id="minmax-js-tab">
+{% highlight javascript %}
+$(document).ready(function() {
+    $('#minMaxForm')
+        .validate({
+            rules: {
+                date: {
+                    required: true,
+                    dateValidator: {
+                        format: 'DD-MM-YYYY',
+                        separator: '-',
+                        minDate: "01-01-2014",  // Or new Date( 2014, 0, 1 )
+                        maxDate: "01-01-2016"   // Or new Date( 2016, 0, 1 )
+                    }
+                }
+            }
+        });
+});
+{% endhighlight %}
+        </div>
+    </div>
+</div>

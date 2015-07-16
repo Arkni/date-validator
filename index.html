@@ -1,0 +1,119 @@
+---
+layout: default
+title: Date-validator by Arkni Brahim
+---
+
+<div id="home">
+    <section>
+        <h2 id="options">Options</h2><br/>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Option</th>
+                        <th>Type</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>format</code><sup>*</sup></td>
+                        <td>String | Array</td>
+                        <td>The date format, can be a string or an array of strings.<br/>
+                            It is <code>MM/DD/YYYY</code>, by default</td>
+                    </tr>
+                    <tr>
+                        <td><code>maxDate</code></td>
+                        <td>String | Date</td>
+                        <td>The max date.</td>
+                    </tr>
+                    <tr>
+                        <td><code>minDate</code></td>
+                        <td>String | Date</td>
+                        <td>The min date.</td>
+                    </tr>
+                    <tr>
+                        <td><code>separator</code><sup>*</sup></td>
+                        <td>String</td>
+                        <td>Used to separate the day, month, and year.<br/>
+                            Most popular examples are a slash (<code>/</code>), hyphen (<code>-</code>), or dot (<code>.</code>)<br/>
+                            It is <code>/</code>, by default.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="callout callout-info info">
+            <p><sup>*</sup> — Required options if different from default values.</p>
+        </div>
+
+        <p>The following table describes the token meanings:</p>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Token</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>D</code></td>
+                        <td>Day of the month as digits; no leading zero for single-digit days.</td>
+                    </tr>
+                    <tr>
+                        <td><code>DD</code></td>
+                        <td>Day of the month as digits; leading zero for single-digit days.</td>
+                    </tr>
+                    <tr>
+                        <td><code>M</code></td>
+                        <td>Month as digits; no leading zero for single-digit months.</td>
+                    </tr>
+                    <tr>
+                        <td><code>MM</code></td>
+                        <td>Month as digits; leading zero for single-digit months.</td>
+                    </tr>
+                    <tr>
+                        <td><code>YY</code></td>
+                        <td>Year as last two digits; leading zero for years less than 10.</td>
+                    </tr>
+                    <tr>
+                        <td><code>YYYY</code></td>
+                        <td>Year represented by four digits.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <p>Below are some examples of possible formats:</p>
+        <ul>
+            <li><code>YYYY/DD/MM</code></li>
+            <li><code>YYYY-MM-DD</code></li>
+            <li><code>YYYY.MM.DD</code></li>
+            <li><code>DD/MM/YYYY</code></li>
+            <li><code>DD-MM-YYYY</code></li>
+            <li><code>DD.MM.YYYY</code></li>
+            <li><code>MM/DD/YYYY</code></li>
+            <li><code>MM-DD-YYYY</code></li>
+            <li><code>MM.DD.YYYY</code></li>
+            <li><code>M/D/YY</code></li>
+            <li><code>M-D-YY</code></li>
+            <li><code>M.D.YY</code></li>
+            <li><code>...</code></li>
+        </ul>
+    </section>
+
+    <section>
+        <h2 id="usage-examples">Usage examples</h2>
+        <h3 id="default-format-separator-example">Using default format & separator</h3><br/>
+        {% include default-format.html %}
+
+        <h3 id="custom-format-separator-example">Using custom format & separator</h3><br/>
+        {% include custom-format.html %}
+
+        <h3 id="array-format-example">Using an array of formats</h3><br/>
+        {% include array-format.html %}
+
+        <h3 id="min-max-example">Using minDate & maxDate options</h3><br/>
+        {% include min-max-date.html %}
+    </section>
+</div>

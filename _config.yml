@@ -1,0 +1,23 @@
+name:                 Date-validator
+# Build settings
+markdown:             redcarpet
+highlighter:          pygments
+relative_permalinks:  false
+
+source:               .
+destination:          ../dateValidatorDocs
+exclude:              ['node_modules', 'dist', '*.less']
+include:              ['.gitignore']
+timezone:             Africa/Casablanca
+
+# Site settings
+title:                Date Validator
+email:                brahim.arkni@gmail.com
+description:          A date validator for jquery-validation plugin.
+twitter_username:     BrahimArkni
+github_username:      Arkni
+repository:
+  source:             https://github.com/Arkni/date-validator
+  download:
+    tag_zip:          https://github.com/Arkni/date-validator/archive/1.0.1.zip
+    tag_tar:          https://github.com/Arkni/date-validator/archive/1.0.1.tar.gz
