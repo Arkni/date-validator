@@ -38,46 +38,6 @@ test("dateValidator", function() {
 		}
 	), "Invalid (Array of formats)" );
 
-	// Array of format with minDate, maxDate & outputFormat options
-	ok( method(
-		"1.1.14",
-		{
-			format: [ "DD.MM.YYYY", "D.M.YY" ],
-			separator: ".",
-			minDate: "21.01.1900",
-			maxDate: "31.12.2015",
-			outputFormat: "DD.MM.YYYY"
-		}
-	), "Valid date dateValidator (Format: D.M.YY)" );
-	equal( "01.01.2014", $("#datevalidator").val() );
-
-	// Using the format D-M-YY
-	ok( method( "9-1-15", { format: "D-M-YY", separator: "-" } ), "Valid date dateValidator (Format: D-M-YY)" );
-
-	// Test using the options.outputFormat param
-	//     format: D/M/YYYY
-	//     outputFormat: DD/MM/YYYY
-	//     separator: /
-	ok( method(
-		"1/1/2014",
-		{
-			format: "D/M/YYYY", outputFormat: "DD/MM/YYYY", separator: "/"
-		}
-	), "Valid date dateValidator (Format: DD/MM/YYYY, outputFormat: DD/MM/YYYY)" );
-	equal( "01/01/2014", $("#datevalidator").val() );
-
-	// Using
-	//     format: "D-M-YYYY"
-	//     separator: "-"
-	//     outputFormat: "DD-MM-YYYY"
-	ok( method(
-		"1-1-2014",
-		{
-			format: "D-M-YYYY", outputFormat: "DD-MM-YYYY", separator: "-"
-		}
-	), "Valid date dateValidator (Format: D-M-YYYY, outputFormat: DD-MM-YYYY)" );
-	equal( "01-01-2014", $("#datevalidator").val() );
-
 	// Using the default format & separator
 	// Default is: { format: "DD/MM/YYYY", separator: "/" }
 	// options = true

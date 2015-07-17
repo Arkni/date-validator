@@ -1,4 +1,7 @@
-#### dateValidator:
+#### dateValidator
+
+A date validator for jquery-validation plugin
+
      check if the given date is valid following the given format
      the date format can be:
          - YYYY/MM/DD

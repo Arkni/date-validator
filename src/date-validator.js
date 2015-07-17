@@ -93,68 +93,6 @@
 		return new Date( year, month - 1, day, 12, 0, 0 );
 	}
 
-	/**
-	 * This function is based on the dateFormat function from the Date Format 1.2.3
-	 * Credit to (c) 2007-2009 Steven Levithan <stevenlevithan.com>
-	 * MIT license
-	 * see http://blog.stevenlevithan.com/archives/date-time-format for the complete lib
-	 *
-	 * Return the date string formatted following the format provided as param
-	 *
-	 * @param {Date|String} date  The date object to format
-	 * @param {String} format     The date format
-	 * The format can be:
-	 *   - date: Consist of DD, MM, YYYY parts which are separated by the separator option
-	 * with
-	 *      d	   Day of the month as digits; no leading zero for single-digit days.
-	 *      dd	   Day of the month as digits; leading zero for single-digit days.
-	 *      m	   Month as digits; no leading zero for single-digit months.
-	 *      mm	   Month as digits; leading zero for single-digit months.
-	 *      yy	   Year as last two digits; leading zero for years less than 10.
-	 *      yyyy   Year represented by four digits.
-	 *
-	 * @returns {String}
-	 */
-	function dateFormater(date, format) {
-		format = format.toLowerCase();
-
-		var	token = /d{1,2}|m{1,2}|yy(?:yy)?/g,
-			pad = function( val, len ) {
-				val = String( val );
-				len = len || 2;
-				while ( val.length < len ) {
-					val = "0" + val;
-				}
-
-				return val;
-			}, d, m, y, flags;
-
-		// Passing date through Date applies Date.parse, if necessary
-		date = date ? new Date( date ) : new Date();
-
-		if ( isNaN( date ) ) {
-			throw new SyntaxError( "invalid date" );
-		}
-
-		format = String(format);
-
-		d = date.getDate();
-		m = date.getMonth();
-		y = date.getFullYear();
-		flags = {
-			d:    d,
-			dd:   pad(d),
-			m:    m + 1,
-			mm:   pad(m + 1),
-			yy:   String( y ).slice( 2 ),
-			yyyy: y
-		};
-
-		return format.replace( token, function( $0 ) {
-			return $0 in flags ? flags[ $0 ] : $0.slice( 1, $0.length - 1 );
-		});
-	}
-
 	/*
 	 * dateValidator validator:
 	 *     check if the given date is valid following the given format
@@ -168,10 +106,10 @@
 	 *         - ...
 	 * the 'options' param is a JSON like object and has the following structure:
 	 * {
-	 *    format:    "The date format", // Can be a string or an array of strings
+	 *    format:    "The date format",  // Can be a string or an array of strings
 	 *    separator: "The used separator",
-	 *    minDate:   "The min date", // Can be a string or a Date object
-	 *    maxDate:   "The max date"  // Can be a string or a Date object
+	 *    minDate:   "The min date",     // Can be a string or a Date object
+	 *    maxDate:   "The max date",     // Can be a string or a Date object
 	 * }
 	 *
 	 * Usage example
@@ -235,7 +173,6 @@
 				} );
 
 				if ( valid ) {
-					options.outputFormat ? $( element ).val( dateFormater( parse( value, format, options.separator ), options.outputFormat ) ) : $.noop();
 					// To exit the $.each
 					return false;
 				}
@@ -284,11 +221,6 @@
 				break;
 			default:
 				break;
-			}
-
-			// Format the value to match the options.outputFormat param
-			if ( valid && options.outputFormat ) {
-				$( element ).val( dateFormater( parse( value, format, separator ), options.outputFormat ) );
 			}
 		}
 
