@@ -216,8 +216,7 @@
 		if ( options === true || $.isEmptyObject( options ) ) {
 			options = {
 				format: "DD/MM/YYYY",
-				separator: "/",
-				outputFormat: "DD/MM/YYYY"
+				separator: "/"
 			};
 		}
 
