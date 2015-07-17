@@ -2,7 +2,7 @@
 	"name": "date-validator",
 	"title": "Date Validator",
 	"description": "A date validator for jquery-validation plugin",
-	"version": "1.0.0",
+	"version": "1.0.1-pre",
 	"homepage": "https://github.com/Arkni/date-validator/",
 	"author": {
 		"name": "Arkni Brahim",
