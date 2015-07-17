@@ -183,17 +183,15 @@
         </div>
 
         <div class="tab-pane" id="default-js-tab">
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">ready</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-    <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#dateForm&#39;</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">validate</span><span class="p">({</span>
-            <span class="nx">rules</span><span class="o">:</span> <span class="p">{</span>
-                <span class="nx">date</span><span class="o">:</span> <span class="p">{</span>
-                    <span class="nx">required</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-                    <span class="nx">dateValidator</span><span class="o">:</span> <span class="kc">true</span> <span class="c1">// Or {}</span>
-                <span class="p">}</span>
-            <span class="p">}</span>
-        <span class="p">});</span>
-<span class="p">});</span></code></pre></div>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#dateForm&#39;</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">validate</span><span class="p">({</span>
+        <span class="nx">rules</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">date</span><span class="o">:</span> <span class="p">{</span>
+                <span class="nx">required</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+<span class="hll">                <span class="nx">dateValidator</span><span class="o">:</span> <span class="kc">true</span> <span class="c1">// Or {}</span>
+</span>            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">});</span></code></pre></div>
         </div>
     </div>
 </div>
@@ -242,20 +240,18 @@
         </div>
 
         <div class="tab-pane" id="custom-js-tab">
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">ready</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-    <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#customDateForm&#39;</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">validate</span><span class="p">({</span>
-            <span class="nx">rules</span><span class="o">:</span> <span class="p">{</span>
-                <span class="nx">date</span><span class="o">:</span> <span class="p">{</span>
-                    <span class="nx">required</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-                    <span class="nx">dateValidator</span><span class="o">:</span> <span class="p">{</span>
-                        <span class="nx">format</span><span class="o">:</span> <span class="s1">&#39;YYYY-MM-DD&#39;</span><span class="p">,</span>
-                        <span class="nx">separator</span><span class="o">:</span> <span class="s1">&#39;-&#39;</span>
-                    <span class="p">}</span>
-                <span class="p">}</span>
-            <span class="p">}</span>
-        <span class="p">});</span>
-<span class="p">});</span></code></pre></div>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#customDateForm&#39;</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">validate</span><span class="p">({</span>
+        <span class="nx">rules</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">date</span><span class="o">:</span> <span class="p">{</span>
+                <span class="nx">required</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+<span class="hll">                <span class="nx">dateValidator</span><span class="o">:</span> <span class="p">{</span>
+</span><span class="hll">                    <span class="nx">format</span><span class="o">:</span> <span class="s1">&#39;YYYY-MM-DD&#39;</span><span class="p">,</span>
+</span><span class="hll">                    <span class="nx">separator</span><span class="o">:</span> <span class="s1">&#39;-&#39;</span>
+</span><span class="hll">                <span class="p">}</span>
+</span>            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">});</span></code></pre></div>
         </div>
     </div>
 </div>
@@ -304,20 +300,18 @@
         </div>
 
         <div class="tab-pane" id="array-format-js-tab">
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">ready</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-    <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#arrayDateForm&#39;</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">validate</span><span class="p">({</span>
-            <span class="nx">rules</span><span class="o">:</span> <span class="p">{</span>
-                <span class="nx">date</span><span class="o">:</span> <span class="p">{</span>
-                    <span class="nx">required</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-                    <span class="nx">dateValidator</span><span class="o">:</span> <span class="p">{</span>
-                        <span class="nx">format</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;DD-MM-YYYY&#39;</span><span class="p">,</span> <span class="s1">&#39;D-M-YYYY&#39;</span><span class="p">,</span> <span class="s1">&#39;D-M-YY&#39;</span><span class="p">],</span>
-                        <span class="nx">separator</span><span class="o">:</span> <span class="s1">&#39;-&#39;</span>
-                    <span class="p">}</span>
-                <span class="p">}</span>
-            <span class="p">}</span>
-        <span class="p">});</span>
-<span class="p">});</span></code></pre></div>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#arrayDateForm&#39;</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">validate</span><span class="p">({</span>
+        <span class="nx">rules</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">date</span><span class="o">:</span> <span class="p">{</span>
+                <span class="nx">required</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+<span class="hll">                <span class="nx">dateValidator</span><span class="o">:</span> <span class="p">{</span>
+</span><span class="hll">                    <span class="nx">format</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;DD-MM-YYYY&#39;</span><span class="p">,</span> <span class="s1">&#39;D-M-YYYY&#39;</span><span class="p">,</span> <span class="s1">&#39;D-M-YY&#39;</span><span class="p">],</span>
+</span><span class="hll">                    <span class="nx">separator</span><span class="o">:</span> <span class="s1">&#39;-&#39;</span>
+</span><span class="hll">                <span class="p">}</span>
+</span>            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">});</span></code></pre></div>
         </div>
     </div>
 </div>
@@ -366,22 +360,20 @@
         </div>
 
         <div class="tab-pane" id="minmax-js-tab">
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">ready</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-    <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#minMaxForm&#39;</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">validate</span><span class="p">({</span>
-            <span class="nx">rules</span><span class="o">:</span> <span class="p">{</span>
-                <span class="nx">date</span><span class="o">:</span> <span class="p">{</span>
-                    <span class="nx">required</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-                    <span class="nx">dateValidator</span><span class="o">:</span> <span class="p">{</span>
-                        <span class="nx">format</span><span class="o">:</span> <span class="s1">&#39;DD-MM-YYYY&#39;</span><span class="p">,</span>
-                        <span class="nx">separator</span><span class="o">:</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span>
-                        <span class="nx">minDate</span><span class="o">:</span> <span class="s2">&quot;01-01-2014&quot;</span><span class="p">,</span>  <span class="c1">// Or new Date( 2014, 0, 1 )</span>
-                        <span class="nx">maxDate</span><span class="o">:</span> <span class="s2">&quot;01-01-2016&quot;</span>   <span class="c1">// Or new Date( 2016, 0, 1 )</span>
-                    <span class="p">}</span>
-                <span class="p">}</span>
-            <span class="p">}</span>
-        <span class="p">});</span>
-<span class="p">});</span></code></pre></div>
+<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#minMaxForm&#39;</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">validate</span><span class="p">({</span>
+        <span class="nx">rules</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">date</span><span class="o">:</span> <span class="p">{</span>
+                <span class="nx">required</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+<span class="hll">                <span class="nx">dateValidator</span><span class="o">:</span> <span class="p">{</span>
+</span><span class="hll">                    <span class="nx">format</span><span class="o">:</span> <span class="s1">&#39;DD-MM-YYYY&#39;</span><span class="p">,</span>
+</span><span class="hll">                    <span class="nx">separator</span><span class="o">:</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span>
+</span><span class="hll">                    <span class="nx">minDate</span><span class="o">:</span> <span class="s2">&quot;01-01-2014&quot;</span><span class="p">,</span>  <span class="c1">// Or new Date( 2014, 0, 1 )</span>
+</span><span class="hll">                    <span class="nx">maxDate</span><span class="o">:</span> <span class="s2">&quot;01-01-2016&quot;</span>   <span class="c1">// Or new Date( 2016, 0, 1 )</span>
+</span><span class="hll">                <span class="p">}</span>
+</span>            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">});</span></code></pre></div>
         </div>
     </div>
 </div>
