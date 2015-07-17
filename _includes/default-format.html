@@ -46,18 +46,16 @@
         </div>
 
         <div class="tab-pane" id="default-js-tab">
-{% highlight javascript %}
-$(document).ready(function() {
-    $('#dateForm')
-        .validate({
-            rules: {
-                date: {
-                    required: true,
-                    dateValidator: true // Or {}
-                }
+{% highlight javascript hl_lines="6" %}
+$('#dateForm')
+    .validate({
+        rules: {
+            date: {
+                required: true,
+                dateValidator: true // Or {}
             }
-        });
-});
+        }
+    });
 {% endhighlight %}
         </div>
     </div>

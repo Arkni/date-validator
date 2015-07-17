@@ -43,21 +43,19 @@
         </div>
 
         <div class="tab-pane" id="custom-js-tab">
-{% highlight javascript %}
-$(document).ready(function() {
-    $('#customDateForm')
-        .validate({
-            rules: {
-                date: {
-                    required: true,
-                    dateValidator: {
-                        format: 'YYYY-MM-DD',
-                        separator: '-'
-                    }
+{% highlight javascript hl_lines="6 7 8 9" %}
+$('#customDateForm')
+    .validate({
+        rules: {
+            date: {
+                required: true,
+                dateValidator: {
+                    format: 'YYYY-MM-DD',
+                    separator: '-'
                 }
             }
-        });
-});
+        }
+    });
 {% endhighlight %}
         </div>
     </div>

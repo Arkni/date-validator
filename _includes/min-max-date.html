@@ -43,23 +43,21 @@
         </div>
 
         <div class="tab-pane" id="minmax-js-tab">
-{% highlight javascript %}
-$(document).ready(function() {
-    $('#minMaxForm')
-        .validate({
-            rules: {
-                date: {
-                    required: true,
-                    dateValidator: {
-                        format: 'DD-MM-YYYY',
-                        separator: '-',
-                        minDate: "01-01-2014",  // Or new Date( 2014, 0, 1 )
-                        maxDate: "01-01-2016"   // Or new Date( 2016, 0, 1 )
-                    }
+{% highlight javascript hl_lines="6 7 8 9 10 11" %}
+$('#minMaxForm')
+    .validate({
+        rules: {
+            date: {
+                required: true,
+                dateValidator: {
+                    format: 'DD-MM-YYYY',
+                    separator: '-',
+                    minDate: "01-01-2014",  // Or new Date( 2014, 0, 1 )
+                    maxDate: "01-01-2016"   // Or new Date( 2016, 0, 1 )
                 }
             }
-        });
-});
+        }
+    });
 {% endhighlight %}
         </div>
     </div>

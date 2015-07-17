@@ -43,21 +43,19 @@
         </div>
 
         <div class="tab-pane" id="array-format-js-tab">
-{% highlight javascript %}
-$(document).ready(function() {
-    $('#arrayDateForm')
-        .validate({
-            rules: {
-                date: {
-                    required: true,
-                    dateValidator: {
-                        format: ['DD-MM-YYYY', 'D-M-YYYY', 'D-M-YY'],
-                        separator: '-'
-                    }
+{% highlight javascript hl_lines="6 7 8 9" %}
+$('#arrayDateForm')
+    .validate({
+        rules: {
+            date: {
+                required: true,
+                dateValidator: {
+                    format: ['DD-MM-YYYY', 'D-M-YYYY', 'D-M-YY'],
+                    separator: '-'
                 }
             }
-        });
-});
+        }
+    });
 {% endhighlight %}
         </div>
     </div>
