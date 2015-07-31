@@ -1,53 +1,6 @@
 (function() {
 
 	/**
-	 * This method will validate the year, the month and the day
-	 *     - The year should be between 1000 & 9999
-	 *     - The month between 1 & 12
-	 *     - the day between 1 & 31 (28 or 29 for February)
-	 *
-	 * @param year
-	 * @param month
-	 * @param day
-	 * @returns {boolean}
-	 */
-	function dateHelper( year, month, day ) {
-		// Check for the length of year, month and day
-		if ( year.length !== 4 || day.length > 2 || month.length > 2 || !year || !month || !day ) {
-			return false;
-		}
-
-		if ( isNaN( year ) || isNaN( month ) || isNaN( day ) ) {
-			return false;
-		}
-
-		day   = parseInt( day, 10 );
-		month = parseInt( month, 10 );
-		year  = parseInt( year, 10 );
-
-		// Validate only years between 1000 & 9999
-		// Check that month is between 1 & 12
-		if ( year < 1000 || year > 9999 || month < 1 || month > 12 ) {
-			return false;
-		}
-
-		// Days number for each month
-		var monthsDays = [ 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 ];
-
-		// If the year is leap, then update the number of days in February to 29 days
-		if ( year % 400 === 0 || ( year % 100 !== 0 && year % 4 === 0 ) ) {
-			monthsDays[ 1 ] = 29;
-		}
-
-		// Then check that the day is between 1 & the number of days of the month
-		if ( day < 1 || day > monthsDays[ month - 1 ] ) {
-			return false;
-		}
-
-		return true;
-	}
-
-	/**
 	 * Get the full year from a the last 2 digits of a year
 	 *		If value > the last 2 digits of the current year
 	 *		Then return ( 1900 + value )
@@ -82,62 +35,306 @@
 	 * @returns {Date}
 	 */
 	function parse( value, dateFormat, separator ) {
-		value      = value.split( separator );
+		// Get the date part of the date format
+		dateFormat = dateFormat.split( " " )[ 0 ];
+		// Split it to three parts: year, month & day
 		dateFormat = dateFormat.split( separator );
+		var hours       = 12, minutes = 0, seconds = 0,
+			sections    = value.split( " " ),
+			dateSection = sections[ 0 ].split( separator ),
+			timeSection = ( sections.length > 1 ) ? sections[ 1 ] : null,
+			amOrPm      = ( sections.length > 2 ) ? sections[ 2 ] : null,
+			year        = dateSection[ $.inArray( "YYYY", dateFormat ) ] ||
+				( dateSection[ $.inArray( "YY", dateFormat ) ].length === 2 ? getYear( dateSection[ $.inArray( "YY", dateFormat ) ] ) : dateSection[ $.inArray( "YY", dateFormat ) ] ),
+			month       = dateSection[ $.inArray( "MM", dateFormat ) ] || dateSection[ $.inArray( "M", dateFormat ) ],
+			day         = dateSection[ $.inArray( "DD", dateFormat ) ] || dateSection[ $.inArray( "D", dateFormat ) ];
 
-		var year  = value[ $.inArray( "YYYY", dateFormat ) ] ||
-			( value[ $.inArray( "YY", dateFormat ) ].length === 2 ? getYear( value[ $.inArray( "YY", dateFormat ) ] ) : value[ $.inArray( "YY", dateFormat ) ] ),
-			month = value[ $.inArray( "MM", dateFormat ) ] || value[ $.inArray( "M", dateFormat ) ],
-			day   = value[ $.inArray( "DD", dateFormat ) ] || value[ $.inArray( "D", dateFormat ) ];
+		if ( timeSection ) {
+			timeSection = timeSection.split( ":" );
+			hours       = timeSection.length > 0 ? timeSection[ 0 ] : null;
+			minutes     = timeSection.length > 1 ? timeSection[ 1 ] : null;
+			seconds     = timeSection.length > 2 ? timeSection[ 2 ] : null;
 
-		return new Date( year, month - 1, day, 12, 0, 0 );
+			if ( amOrPm ) {
+				if ( ( amOrPm === "am" || amOrPm === "AM" ) && hours === 12 ) {
+					hours = parseInt( hours, 10 ) - 12;
+				}
+
+				if ( ( amOrPm === "pm" || amOrPm === "PM" ) && hours < 12 ) {
+					hours = parseInt( hours, 10 ) + 12;
+				}
+			}
+		}
+
+		return new Date( year, month - 1, day, hours, minutes, seconds );
+	}
+
+	/**
+	 * This method will validate the year, the month and the day
+	 *     - The year should be between 1000 & 9999
+	 *     - The month between 1 & 12
+	 *     - the day between 1 & 31 (28 or 29 for February)
+	 *
+	 * @param dateFormat   The date format, consiste of Year (YYYY, YY),
+	 *                     Month (MM, M) and Day (DD, D).
+	 * @param dateValue    The date value.
+	 * @param separator    The separator used in the date (/, -. .).
+	 * @returns {boolean}  The validity of the passed date value.
+	 */
+	function dateHelper( dateFormat, dateValue, separator ) {
+		var year, month, day, yearLength, monthLength, dayLength, yearToken, monthToken, dayToken,
+			// Days number of each month.
+			monthsDays = [ 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 ];
+
+		dateFormat = dateFormat.split( separator );
+		dateValue  = dateValue.split( separator );
+
+		// Check if dateValues & dateFormats have the same length
+		// If no, exit with error
+		if ( dateValue.length !== dateFormat.length ) {
+			return false;
+		}
+
+		// Retrieve the year, the month & the day values.
+		year  = dateValue[ $.inArray( "YYYY", dateFormat ) ] || dateValue[ $.inArray( "YY", dateFormat ) ];
+		month = dateValue[ $.inArray( "MM", dateFormat ) ] || dateValue[ $.inArray( "M", dateFormat ) ];
+		day   = dateValue[ $.inArray( "DD", dateFormat ) ] || dateValue[ $.inArray( "D", dateFormat ) ];
+
+		// Get the initial length of the year, month & day
+		yearLength  = year.length;
+		monthLength = month.length;
+		dayLength   = day.length;
+
+		// Retrieve the year, the month & the day tokens.
+		yearToken  = dateFormat[ $.inArray( "YYYY", dateFormat ) ] || dateFormat[ $.inArray( "YY", dateFormat ) ];
+		monthToken = dateFormat[ $.inArray( "MM", dateFormat ) ] || dateFormat[ $.inArray( "M", dateFormat ) ];
+		dayToken   = dateFormat[ $.inArray( "DD", dateFormat ) ] || dateFormat[ $.inArray( "D", dateFormat ) ];
+
+		// Check the year, the month and the day
+		if ( !year || !month || !day || isNaN( year ) || isNaN( month ) || isNaN( day ) ) {
+			return false;
+		}
+
+		// Validate the year
+		year  = parseInt( year, 10 );
+		switch ( yearToken ) {
+		case ( "YY" ):
+			if ( yearLength !== 2 ) {
+				return false;
+			}
+			break;
+		case ( "YYYY" ):
+			if ( yearLength !== 4 ) {
+				return false;
+			}
+			// Validate only years between 1000 & 9999
+			if ( year < 1000 || year > 9999 ) {
+				return false;
+			}
+			break;
+		default:
+			break;
+		}
+
+		// Validate the month
+		month = parseInt( month, 10 );
+		// Check that month is between 1 & 12
+		if ( month < 1 || month > 12 ) {
+			return false;
+		}
+
+		switch ( monthToken ) {
+		case ( "M" ):
+			if ( month > 0 & month <= 9 && monthLength !== 1 ) {
+				return false;
+			}
+			break;
+		case ( "MM" ):
+			if ( monthLength !== 2 ) {
+				return false;
+			}
+			break;
+		default:
+			break;
+		}
+
+		// Validate the day
+		// If the year is leap, then update the number of days in February to 29 days
+		if ( year % 400 === 0 || ( year % 100 !== 0 && year % 4 === 0 ) ) {
+			monthsDays[ 1 ] = 29;
+		}
+		day   = parseInt( day, 10 );
+
+		// Then check that the day is between 1 & the number of days of the month
+		if ( day < 1 || day > monthsDays[ month - 1 ] ) {
+			return false;
+		}
+
+		switch ( dayToken ) {
+		case ( "D" ):
+			if ( day > 0 & day <= 9 && dayLength !== 1 ) {
+				return false;
+			}
+			break;
+		case ( "DD" ):
+			if ( monthLength !== 2 ) {
+				return false;
+			}
+			break;
+		default:
+			break;
+		}
+
+		return true;
+	}
+
+	/**
+	 * This method will validate the hour, the minute and the second
+	 *     - The hour should be between 00 & 23 or between 01 & 12 if AM or PM.
+	 *     - The minute between 00 & 59
+	 *     - The second between 00 & 59
+	 *
+	 * @param timeFormat   The time format, can consiste of hours (hh, h, HH or H),
+	 *                     minutes (mm or m) & seconds (ss or s).
+	 * @param timeValues   The time value.
+	 * @param amOrPm       the am/pm token, it can be either "A" for "AM" & "PM"
+	 *                     or "a" for "am" & "pm".
+	 * @param amOrPmValue  The value of the amOrPm token, it can be either "AM", "am",
+	 *                     "PM" or "pm".
+	 * @returns {boolean}  The validity of the passed time value.
+	 */
+	function timeHelper( timeFormat, timeValue, amOrPm, amOrPmValue ) {
+		var hours, minutes, seconds, hoursToken, minutesToken, secondsToken,
+			hoursLength, minutesLength, secondsLength;
+
+		// Determine the time
+		if ( timeFormat ) {
+			timeFormat = timeFormat.split( ":" );
+			timeValue = timeValue.split( ":" );
+
+			// Check if timeValues has the same size as timeFormat
+			if ( timeFormat.length !== timeValue.length ) {
+				return false;
+			}
+
+			// Get the hours, minutes and seconds tokens from the time format.
+			hoursToken   = timeFormat[ 0 ];
+			minutesToken = timeFormat[ 1 ];
+			secondsToken = timeFormat[ 2 ];
+
+			if ( amOrPm ) {
+				if ( amOrPm && hoursToken === hoursToken.toUpperCase() ) {
+					throw new SyntaxError( "'A' and 'a' tokens are used only with 'h' or 'hh'." );
+				}
+
+				if ( !amOrPmValue ) {
+					return false;
+				}
+
+				if ( amOrPm === "A" && amOrPmValue !== "AM" && amOrPmValue !== "PM" ) {
+					return false;
+				}
+
+				if ( amOrPm === "a" && amOrPmValue !== "am" && amOrPmValue !== "pm" ) {
+					return false;
+				}
+			}
+
+			// Retrieve the hours, the minutes & the seconds values.
+			hours   = timeValue[ $.inArray( hoursToken, timeFormat ) ] || undefined;
+			minutes = timeValue[ $.inArray( minutesToken, timeFormat ) ] || undefined;
+			seconds = timeValue[ $.inArray( secondsToken, timeFormat ) ] || undefined;
+
+			// Hours & minutes are required, seconds required only when using the full format: hours:minutes:seconds
+			if ( !hours || !minutes || ( secondsToken && !seconds ) ) {
+				return false;
+			}
+
+			// Get the initial length of hours, minutes
+			hoursLength   = hours.length;
+			minutesLength = minutes.length;
+
+			// Validate hours
+			if ( isNaN( hours ) || hoursLength > 2 ) {
+				return false;
+			}
+
+			hours = parseInt( hours, 10 );
+			switch ( hoursToken ) {
+			case ( "h" ):
+			case ( "hh" ):
+				if ( hours < 1 || hours > 12 ) {
+					return false;
+				}
+				if ( hours > 0 && hours <= 9 &&
+					( hoursLength !== 1 && hoursToken === "h" || hoursLength !== 2 && hoursToken === "hh" ) ) {
+					return false;
+				}
+				break;
+			case ( "H" ):
+			case ( "HH" ):
+				if ( hours < 0 || hours > 23 ) {
+					return false;
+				}
+				if ( hours > 0 && hours <= 9 &&
+					( hoursLength !== 1 && hoursToken === "H" || hoursLength !== 2 && hoursToken === "HH" ) ) {
+					return false;
+				}
+				break;
+			default:
+				break;
+			}
+
+			// Validate minutes
+			if ( isNaN( minutes ) || minutesLength > 2 ) {
+				return false;
+			}
+
+			minutes = parseInt( minutes, 10 );
+			if ( minutes < 0 || minutes > 59 ) {
+				return false;
+			}
+
+			if ( minutes > 0 && minutes <= 9 &&
+				( minutesLength !== 1 && minutesToken === "m" || minutesLength !== 2 && minutesToken === "mm" ) ) {
+				return false;
+			}
+
+			// Validate seconds
+			if ( seconds ) {
+				secondsLength = seconds.length;
+				if ( isNaN( seconds ) || secondsLength > 2 ) {
+					return false;
+				}
+
+				seconds = parseInt( seconds, 10 );
+				if ( seconds < 0 || seconds > 59 ) {
+					return false;
+				}
+
+				if ( seconds > 0 && seconds <= 9 &&
+					( secondsLength !== 1 && secondsToken === "s" || secondsLength !== 2 && secondsToken === "ss" ) ) {
+					return false;
+				}
+			}
+		}
+
+		return true;
 	}
 
 	/*
 	 * dateValidator validator:
-	 *     check if the given date is valid following the given format
-	 *     the date format can be:
-	 *         - YYYY/MM/DD
-	 *         - YYYY-MM-DD
-	 *         - YYYY.MM.DD
-	 *         - DD/MM/YYYY
-	 *         - DD-MM-YYYY
-	 *         - DD.MM.YYYY
-	 *         - ...
+	 *     check if the given date is valid following the given format.
+	 *
 	 * the 'options' param is a JSON like object and has the following structure:
-	 * {
-	 *    format:    "The date format",  // Can be a string or an array of strings
-	 *    separator: "The used separator",
-	 *    minDate:   "The min date",     // Can be a string or a Date object
-	 *    maxDate:   "The max date",     // Can be a string or a Date object
-	 * }
+	 *     {
+	 *        format:    "The date format",  // Can be a string or an array of strings
+	 *        separator: "The used separator",
+	 *        minDate:   "The min date",     // Can be a string or a Date object
+	 *        maxDate:   "The max date",     // Can be a string or a Date object
+	 *     }
 	 *
-	 * Usage example
-	 *
-	 *    - Using default format & separator:
-	 *    // Using 'true' or an empty object {} instead of the 'options' param
-	 *    dateInput: {
-	 *        dateValidator: true // Or {}
-	 *    }
-	 *
-	 *    // Or Use the 'minDate' and/or the 'maxDate' like the following
-	 *    dateInput: {
-	 *        dateValidator: {
-	 *            minDate: "31/01/2014",  // Or new Date( 2014, 0, 31 )
-	 *            maxDate: "31/01/2016"   // Or new Date( 2016, 0, 31 )
-	 *        }
-	 *    }
-	 *
-	 *    - Using other date formats with specific separator
-	 *    dateInput: {
-	 *        dateValidator: {
-	 *            format: "DD-MM-YYYY",   // Required if format <> "DD/MM/YYYY"
-	 *            separator: "-",         // Required if separator <> "/"
-	 *            minDate: "01-01-2014",  // Or new Date( 2014, 0, 1 )
-	 *            maxDate: "01-01-2016"   // Or new Date( 2016, 0, 1 )
-	 *        }
-	 *    }
-	 *
+	 * Usage examples & docs: http://arkni.github.io/date-validator/
 	 */
 	$.validator.addMethod("dateValidator", function( value, element, options ) {
 		// If the field is optional
@@ -159,8 +356,8 @@
 		}
 
 		var $this = this,
-			format, separator, dateFormats, dateValues, year, month, day,
-			date, minDate, maxDate, valid;
+			format, formats, separator, dateFormat, timeFormat, values, dateValue,
+			timeValue, amOrPm, amOrPmValue, date, minDate, maxDate, valid;
 
 		// If the format is an array of formats, then split each format (element) of the array
 		if ( $.isArray( options.format ) ) {
@@ -178,21 +375,28 @@
 				}
 			});
 		} else {
-			format      = options.format ? options.format.toUpperCase() : "DD/MM/YYYY";
+			format      = options.format ? options.format : "DD/MM/YYYY";
 			separator   = options.separator || "/";
-			dateFormats = format.split( separator ); // Split the format to 3 values YYYY, MM & DD
-			dateValues  = value.split( separator );  // Split the date to 3 values year, month & day
-			year        = dateValues[ $.inArray( "YYYY", dateFormats ) ] || getYear( dateValues[ $.inArray( "YY", dateFormats ) ] );
-			month       = dateValues[ $.inArray( "MM", dateFormats ) ] || dateValues[ $.inArray( "M", dateFormats ) ];
-			day         = dateValues[ $.inArray( "DD", dateFormats ) ] || dateValues[ $.inArray( "D", dateFormats ) ];
+			formats     = format.split( " " );
+			dateFormat = formats[ 0 ];
+			timeFormat  = ( formats.length > 1 ) ? formats[ 1 ] : null;
+			amOrPm      = ( formats.length > 2 ) ? formats[ 2 ] : null;
+			values      = value.split( " " );
+			dateValue  = values[ 0 ];
+			timeValue  = ( values.length > 1 ) ? values[ 1 ] : null;
+			amOrPmValue = ( values.length > 2 ) ? values[ 2 ] : null;
 
-			// Check if dateValues & dateFormats have the same length
+			// Check if formats & values have the same length
 			// If no, exit with error
-			if ( dateValues.length !== dateFormats.length ) {
+			if ( formats.length !== values.length ) {
 				return false;
 			}
 
-			valid = dateHelper( year, month, day );
+			valid = dateHelper( dateFormat, dateValue, separator );
+
+			if ( valid && !timeHelper( timeFormat, timeValue, amOrPm, amOrPmValue )) {
+				return false;
+			}
 
 			// Check if options.minDate was set
 			if ( options.minDate ) {
@@ -205,7 +409,7 @@
 			}
 
 			if ( valid ) {
-				date = new Date( year, month - 1, day, 12, 0, 0 );
+				date = parse( value, format, separator );
 			}
 
 			// Test for minDate and maxDate

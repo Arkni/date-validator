@@ -80,6 +80,105 @@ test("dateValidator", function() {
 	ok( !method( "02-30-2004", { format: "MM-DD-YYYY", separator: "-" } ), "Invalid date dateValidator (Format: MM-DD-YYYY)" );
 	ok( !method( "04.31.2003", { format: "MM.DD.YYYY", separator: "." } ), "Invalid date dateValidator (Format: MM.DD.YYYY)" );
 
+	// YY{separator}M{separator}D
+	ok( method( "86/1/29", { format: "YY/M/D", separator: "/" } ), "Valid date dateValidator (Format: YY/M/D)" );
+	ok( method( "85-2-1", { format: "YY-M-D", separator: "-" } ), "Valid date dateValidator (Format: YY-M-D)" );
+	ok( method( "87.12.31", { format: "YY.M.D", separator: "." } ), "Valid date dateValidator (Format: YY.M.D)" );
+	ok( !method( "5/06/13", { format: "YY/M/D", separator: "/" } ), "Invalid date dateValidator (Format: YY/M/D)" );
+	ok( !method( "14-09-29", { format: "YY-M-D", separator: "-" } ), "Invalid date dateValidator (Format: YY-M-D)" );
+	ok( !method( "75.2.01", { format: "YY.M.D", separator: "." } ), "Invalid date dateValidator (Format: YY.M.D)" );
+
+	// D{separator}M{separator}YY
+	ok( method( "29/12/10", { format: "D/M/YY", separator: "/" } ), "Valid date dateValidator (Format: D/M/YY)" );
+	ok( method( "29-8-10", { format: "D-M-YY", separator: "-" } ), "Valid date dateValidator (Format: D-M-YY)" );
+	ok( method( "9.9.10", { format: "D.M.YY", separator: "." } ), "Valid date dateValidator (Format: D.M.YY)" );
+	ok( !method( "11/10/1", { format: "D/M/YY", separator: "/" } ), "Invalid date dateValidator (Format: D/M/YY)" );
+	ok( !method( "31-02-14", { format: "D-M-YY", separator: "-" } ), "Invalid date dateValidator (Format: D-M-YY)" );
+	ok( !method( "01.11.14", { format: "D.M.YY", separator: "." } ), "Invalid date dateValidator (Format: D.M.YY)" );
+
+	// M{separator}D{separator}YY
+	ok( method( "12/27/10", { format: "M/D/YY", separator: "/" } ), "Valid date dateValidator (Format: M/D/YY)" );
+	ok( method( "11-5-05", { format: "M-D-YY", separator: "-" } ), "Valid date dateValidator (Format: M-D-YY)" );
+	ok( method( "1.11.05", { format: "M.D.YY", separator: "." } ), "Valid date dateValidator (Format: M.D.YY)" );
+	ok( !method( "12/31/9", { format: "M/D/YY", separator: "/" } ), "Invalid date dateValidator (Format: M/D/YY)" );
+	ok( !method( "02-27-04", { format: "M-D-YY", separator: "-" } ), "Invalid date dateValidator (Format: M-D-YY)" );
+	ok( !method( "10.01.03", { format: "M.D.YY", separator: "." } ), "Invalid date dateValidator (Format: M.D.YY)" );
+
+	// Test datetime values
+	// Format: (we will test only one format)
+	// YYYY-MM-DD HH:mm
+	ok( method( "1885-12-31 12:01", { format: "YYYY-MM-DD HH:mm", separator: "-" } ), "Valid date dateValidator (Format: YYYY-MM-DD HH:mm)" );
+	ok( !method( "1885-12-31 24:60", { format: "YYYY-MM-DD HH:mm", separator: "-" } ), "Invalid date dateValidator (Format: YYYY-MM-DD HH:mm)" );
+	ok( !method( "1885-12-31 :", { format: "YYYY-MM-DD HH:mm", separator: "-" } ), "Invalid date dateValidator (Format: YYYY-MM-DD HH:mm)" );
+	ok( !method( "1885-12-31 12:", { format: "YYYY-MM-DD HH:mm", separator: "-" } ), "Invalid date dateValidator (Format: YYYY-MM-DD HH:mm)" );
+	ok( !method( "1885-12-31 :59", { format: "YYYY-MM-DD HH:mm", separator: "-" } ), "Invalid date dateValidator (Format: YYYY-MM-DD HH:mm)" );
+
+	// Test datetime values
+	// Formats:
+	// YYYY-MM-DD hh:mm A
+	// YYYY-MM-DD hh:mm a
+	ok( method( "1885-12-31 02:01 AM", { format: "YYYY-MM-DD hh:mm A", separator: "-" } ), "Valid date dateValidator (Format: YYYY-MM-DD hh:mm A)" );
+	ok( method( "1885-12-31 01:15 PM", { format: "YYYY-MM-DD hh:mm A", separator: "-" } ), "Valid date dateValidator (Format: YYYY-MM-DD hh:mm A)" );
+	ok( method( "1885-12-31 11:59 am", { format: "YYYY-MM-DD hh:mm a", separator: "-" } ), "Valid date dateValidator (Format: YYYY-MM-DD hh:mm a)" );
+	ok( method( "1885-12-31 12:00 pm", { format: "YYYY-MM-DD hh:mm a", separator: "-" } ), "Valid date dateValidator (Format: YYYY-MM-DD hh:mm a)" );
+	ok( !method( "1885-12-31 13:00 AM", { format: "YYYY-MM-DD hh:mm A", separator: "-" } ), "Invalid date dateValidator (Format: YYYY-MM-DD hh:mm A)" );
+	ok( !method( "1885-12-31 21:15 PM", { format: "YYYY-MM-DD hh:mm A", separator: "-" } ), "Invalid date dateValidator (Format: YYYY-MM-DD hh:mm A)" );
+	ok( !method( "1885-12-31 01:00 A", { format: "YYYY-MM-DD hh:mm A", separator: "-" } ), "Invalid date dateValidator (Format: YYYY-MM-DD hh:mm A)" );
+	ok( !method( "1885-12-31 01:15 PP", { format: "YYYY-MM-DD hh:mm A", separator: "-" } ), "Invalid date dateValidator (Format: YYYY-MM-DD hh:mm A)" );
+	ok( !method( "1885-12-31 01:00 ", { format: "YYYY-MM-DD hh:mm A", separator: "-" } ), "Invalid date dateValidator (Format: YYYY-MM-DD hh:mm A)" );
+	ok( !method( "1885-12-31 01:15", { format: "YYYY-MM-DD hh:mm A", separator: "-" } ), "Invalid date dateValidator (Format: YYYY-MM-DD hh:mm A)" );
+	ok( !method( "1885-12-31 19:59 am", { format: "YYYY-MM-DD hh:mm a", separator: "-" } ), "Invalid date dateValidator (Format: YYYY-MM-DD hh:mm a)" );
+	ok( !method( "1885-12-31 15:00 pm", { format: "YYYY-MM-DD hh:mm a", separator: "-" } ), "Invalid date dateValidator (Format: YYYY-MM-DD hh:mm a)" );
+	ok( !method( "1885-12-31 01:59 a", { format: "YYYY-MM-DD hh:mm a", separator: "-" } ), "Invalid date dateValidator (Format: YYYY-MM-DD hh:mm a)" );
+	ok( !method( "1885-12-31 12:00 m", { format: "YYYY-MM-DD hh:mm a", separator: "-" } ), "Invalid date dateValidator (Format: YYYY-MM-DD hh:mm a)" );
+	ok( !method( "1885-12-31 01:59 ", { format: "YYYY-MM-DD hh:mm a", separator: "-" } ), "Invalid date dateValidator (Format: YYYY-MM-DD hh:mm a)" );
+	ok( !method( "1885-12-31 12:00", { format: "YYYY-MM-DD hh:mm a", separator: "-" } ), "Invalid date dateValidator (Format: YYYY-MM-DD hh:mm a)" );
+
+	// Test datetime values
+	// Format:
+	// YYYY-MM-DD HH:mm:ss
+	ok( method( "1885-12-31 12:01:00", { format: "YYYY-MM-DD HH:mm:ss", separator: "-" } ), "Valid date dateValidator (Format: YYYY-MM-DD HH:mm:ss)" );
+	ok( !method( "1885-12-31 22:60:59", { format: "YYYY-MM-DD HH:mm:ss", separator: "-" } ), "Invalid date dateValidator (Format: YYYY-MM-DD HH:mm:ss)" );
+	ok( !method( "1885-12-31 ::", { format: "YYYY-MM-DD HH:mm:ss", separator: "-" } ), "Invalid date dateValidator (Format: YYYY-MM-DD HH:mm:ss)" );
+	ok( !method( "1885-12-31 12::", { format: "YYYY-MM-DD HH:mm:ss", separator: "-" } ), "Invalid date dateValidator (Format: YYYY-MM-DD HH:mm:ss)" );
+	ok( !method( "1885-12-31 :15:", { format: "YYYY-MM-DD HH:mm:ss", separator: "-" } ), "Invalid date dateValidator (Format: YYYY-MM-DD HH:mm:ss)" );
+	ok( !method( "1885-12-31 ::10", { format: "YYYY-MM-DD HH:mm:ss", separator: "-" } ), "Invalid date dateValidator (Format: YYYY-MM-DD HH:mm:ss)" );
+	ok( !method( "1885-12-31 12:15:", { format: "YYYY-MM-DD HH:mm:ss", separator: "-" } ), "Invalid date dateValidator (Format: YYYY-MM-DD HH:mm:ss)" );
+	ok( !method( "1885-12-31 12::15", { format: "YYYY-MM-DD HH:mm:ss", separator: "-" } ), "Invalid date dateValidator (Format: YYYY-MM-DD HH:mm:ss)" );
+	ok( !method( "1885-12-31 :12:15", { format: "YYYY-MM-DD HH:mm:ss", separator: "-" } ), "Invalid date dateValidator (Format: YYYY-MM-DD HH:mm:ss)" );
+
+	// Test datetime values
+	// Formats:
+	// YYYY-MM-DD hh:mm:ss A
+	// YYYY-MM-DD hh:mm:ss a
+	ok( method( "1885-12-31 02:01:59 AM", { format: "YYYY-MM-DD hh:mm:ss A", separator: "-" } ), "Valid date dateValidator (Format: YYYY-MM-DD hh:mm:ss A)" );
+	ok( method( "1885-12-31 01:15:59 PM", { format: "YYYY-MM-DD hh:mm:ss A", separator: "-" } ), "Valid date dateValidator (Format: YYYY-MM-DD hh:mm:ss A)" );
+	ok( method( "1885-12-31 11:59:59 am", { format: "YYYY-MM-DD hh:mm:ss a", separator: "-" } ), "Valid date dateValidator (Format: YYYY-MM-DD hh:mm:ss a)" );
+	ok( method( "1885-12-31 12:00:59 pm", { format: "YYYY-MM-DD hh:mm:ss a", separator: "-" } ), "Valid date dateValidator (Format: YYYY-MM-DD hh:mm:ss a)" );
+	ok( !method( "1885-12-31 13:00:19 AM", { format: "YYYY-MM-DD hh:mm:ss A", separator: "-" } ), "Invalid date dateValidator (Format: YYYY-MM-DD hh:mm:ss A)" );
+	ok( !method( "1885-12-31 21:15:19 PM", { format: "YYYY-MM-DD hh:mm:ss A", separator: "-" } ), "Invalid date dateValidator (Format: YYYY-MM-DD hh:mm:ss A)" );
+	ok( !method( "1885-12-31 01:00:19 A", { format: "YYYY-MM-DD hh:mm:ss A", separator: "-" } ), "Invalid date dateValidator (Format: YYYY-MM-DD hh:mm:ss A)" );
+	ok( !method( "1885-12-31 01:15:19 PP", { format: "YYYY-MM-DD hh:mm:ss A", separator: "-" } ), "Invalid date dateValidator (Format: YYYY-MM-DD hh:mm:ss A)" );
+	ok( !method( "1885-12-31 19:59:19 am", { format: "YYYY-MM-DD hh:mm:ss a", separator: "-" } ), "Invalid date dateValidator (Format: YYYY-MM-DD hh:mm:ss a)" );
+	ok( !method( "1885-12-31 15:00:19 pm", { format: "YYYY-MM-DD hh:mm:ss a", separator: "-" } ), "Invalid date dateValidator (Format: YYYY-MM-DD hh:mm:ss a)" );
+	ok( !method( "1885-12-31 01:59:19 a", { format: "YYYY-MM-DD hh:mm:ss a", separator: "-" } ), "Invalid date dateValidator (Format: YYYY-MM-DD hh:mm:ss a)" );
+	ok( !method( "1885-12-31 12:00:19 m", { format: "YYYY-MM-DD hh:mm:ss a", separator: "-" } ), "Invalid date dateValidator (Format: YYYY-MM-DD hh:mm:ss a)" );
+
+	// Test datetime values
+	// Format: (we will test only one format)
+	// YYYY-MM-DD H:m:s
+	ok( method( "1885-12-31 2:1:9", { format: "YYYY-MM-DD H:m:s", separator: "-" } ), "Valid date dateValidator (Format: YYYY-MM-DD H:m:s)" );
+	ok( !method( "1885-12-31 01:13:20", { format: "YYYY-MM-DD H:m:s", separator: "-" } ), "Invalid date dateValidator (Format: YYYY-MM-DD H:m:s)" );
+	ok( !method( "1885-12-31 22:09:59", { format: "YYYY-MM-DD H:m:s", separator: "-" } ), "Invalid date dateValidator (Format: YYYY-MM-DD H:m:s)" );
+	ok( !method( "1885-12-31 23:13:02", { format: "YYYY-MM-DD H:m:s", separator: "-" } ), "Invalid date dateValidator (Format: YYYY-MM-DD H:m:s)" );
+
+	// Test datetime values
+	// Format: (we will test only one format)
+	// YYYY-MM-DD h:m:s
+	ok( method( "1885-12-31 2:1:9", { format: "YYYY-MM-DD h:m:s", separator: "-" } ), "Valid date dateValidator (Format: YYYY-MM-DD h:m:s)" );
+	ok( !method( "1885-12-31 01:13:20", { format: "YYYY-MM-DD h:m:s", separator: "-" } ), "Invalid date dateValidator (Format: YYYY-MM-DD h:m:s)" );
+	ok( !method( "1885-12-31 22:29:59", { format: "YYYY-MM-DD h:m:s", separator: "-" } ), "Invalid date dateValidator (Format: YYYY-MM-DD h:m:s)" );
+
 	// Test minDate
 	// Default is: { format: "DD/MM/YYYY", separator: "/" }
 	// Using a date string
@@ -96,8 +195,16 @@ test("dateValidator", function() {
 	// Using other formats & date string
 	ok( method( "12/29/2012", { format: "MM/DD/YYYY", separator: "/", minDate: "01/31/2012" } ), "Valid min date dateValidator (Format: MM/DD/YYYY)" );
 	ok( method( "2007-12-31", { format: "YYYY-MM-DD", separator: "-", minDate: "2007-01-31" } ), "Valid min date dateValidator (Format: YYYY-MM-DD)" );
+	ok( method( "12/29/2012 15:00", { format: "MM/DD/YYYY HH:mm", separator: "/", minDate: "01/31/2012 12:00" } ), "Valid min date dateValidator (Format: MM/DD/YYYY HH:mm)" );
+	ok( method( "2007-12-31 23:59", { format: "YYYY-MM-DD HH:mm", separator: "-", minDate: "2007-01-31 23:59" } ), "Valid min date dateValidator (Format: YYYY-MM-DD HH:mm)" );
+	ok( method( "12/29/2012 15:00:00", { format: "MM/DD/YYYY HH:mm:ss", separator: "/", minDate: "01/31/2012 12:00:00" } ), "Valid min date dateValidator (Format: MM/DD/YYYY HH:mm:ss)" );
+	ok( method( "2007-12-31 23:59:59", { format: "YYYY-MM-DD HH:mm:ss", separator: "-", minDate: "2007-01-31 23:59:59" } ), "Valid min date dateValidator (Format: YYYY-MM-DD HH:mm:ss)" );
 	ok( !method( "12/29/2011", { format: "MM/DD/YYYY", separator: "/", minDate: "01/31/2012" } ), "Invalid min date dateValidator (Format: MM/DD/YYYY)" );
 	ok( !method( "2008-12-31", { format: "YYYY-MM-DD", separator: "-", minDate: "2010-01-31" } ), "Invalid min date dateValidator (Format: YYYY-MM-DD)" );
+	ok( !method( "12/29/2011 15:00", { format: "MM/DD/YYYY HH:mm", separator: "/", minDate: "01/31/2012 12:00" } ), "Invalid min date dateValidator (Format: MM/DD/YYYY HH:mm)" );
+	ok( !method( "2007-01-30 23:59", { format: "YYYY-MM-DD HH:mm", separator: "-", minDate: "2007-01-31 23:59" } ), "Invalid min date dateValidator (Format: YYYY-MM-DD HH:mm)" );
+	ok( !method( "01/31/2012 11:59:59", { format: "MM/DD/YYYY HH:mm:ss", separator: "/", minDate: "01/31/2012 12:00:00" } ), "Invalid min date dateValidator (Format: MM/DD/YYYY HH:mm:ss)" );
+	ok( !method( "2007-01-31 23:59:58", { format: "YYYY-MM-DD HH:mm:ss", separator: "-", minDate: "2007-01-31 23:59:59" } ), "Invalid min date dateValidator (Format: YYYY-MM-DD HH:mm:ss)" );
 
 	// Test minDate
 	// Using other formats & date object
@@ -122,8 +229,16 @@ test("dateValidator", function() {
 	// Using other formats & date string
 	ok( method( "29/12/2012", { format: "DD/MM/YYYY", separator: "/", maxDate: "31/01/2014" } ), "Valid max date dateValidator (Format: DD/MM/YYYY)" );
 	ok( method( "2013-12-31", { format: "YYYY-MM-DD", separator: "-", maxDate: "2014-05-31" } ), "Valid max date dateValidator (Format: YYYY-MM-DD)" );
+	ok( method( "12/29/2011 15:00", { format: "MM/DD/YYYY HH:mm", separator: "/", maxDate: "01/31/2012 12:00" } ), "Valid max date dateValidator (Format: MM/DD/YYYY HH:mm)" );
+	ok( method( "2006-12-31 23:59", { format: "YYYY-MM-DD HH:mm", separator: "-", maxDate: "2007-01-31 23:59" } ), "Valid max date dateValidator (Format: YYYY-MM-DD HH:mm)" );
+	ok( method( "12/29/2011 15:00:00", { format: "MM/DD/YYYY HH:mm:ss", separator: "/", maxDate: "01/31/2012 12:00:00" } ), "Valid max date dateValidator (Format: MM/DD/YYYY HH:mm:ss)" );
+	ok( method( "2007-01-30 23:59:59", { format: "YYYY-MM-DD HH:mm:ss", separator: "-", maxnDate: "2007-01-31 23:59:59" } ), "Valid max date dateValidator (Format: YYYY-MM-DD HH:mm:ss)" );
 	ok( !method( "29/12/2015", { format: "DD/MM/YYYY", separator: "/", maxDate: "31/01/2012" } ), "Invalid max date dateValidator (Format: DD/MM/YYYY)" );
 	ok( !method( "2015-02-19", { format: "YYYY-MM-DD", separator: "-", maxDate: "2014-05-31" } ), "Invalid max date dateValidator (Format: YYYY-MM-DD)" );
+	ok( !method( "12/31/2012 12:00", { format: "MM/DD/YYYY HH:mm", separator: "/", maxDate: "01/31/2012 12:00" } ), "Invalid max date dateValidator (Format: MM/DD/YYYY HH:mm)" );
+	ok( !method( "2007-01-31 23:59", { format: "YYYY-MM-DD HH:mm", separator: "-", maxDate: "2007-01-31 23:58" } ), "Invalid max date dateValidator (Format: YYYY-MM-DD HH:mm)" );
+	ok( !method( "01/31/2012 12:00:00", { format: "MM/DD/YYYY HH:mm:ss", separator: "/", maxDate: "01/31/2012 11:59:59" } ), "Invalid max date dateValidator (Format: MM/DD/YYYY HH:mm:ss)" );
+	ok( !method( "2007-01-31 23:59:59", { format: "YYYY-MM-DD HH:mm:ss", separator: "-", maxDate: "2007-01-31 23:59:58" } ), "Invalid max date dateValidator (Format: YYYY-MM-DD HH:mm:ss)" );
 
 	// Test maxDate
 	// Using other formats & date object
