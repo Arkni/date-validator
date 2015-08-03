@@ -1,0 +1,28 @@
+<div class="datevalidator-example">
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="#default-form-tab" data-toggle="tab">Try it</a>
+        </li>
+        <li><a href="#default-html-tab" data-toggle="tab">HTML</a>
+        </li>
+        <li><a href="#default-js-tab" data-toggle="tab">JS</a>
+        </li>
+    </ul>
+
+    <div class="tab-content">
+        <div class="tab-pane active" id="default-form-tab">
+            {% include examples/html/default-format.html %}
+        </div>
+
+        <div class="tab-pane" id="default-html-tab">
+            {% highlight html %}
+            {% include examples/html/default-format.html %}
+            {% endhighlight %}
+        </div>
+
+        <div class="tab-pane" id="default-js-tab">
+            {% highlight javascript hl_lines="5" %}
+            {% include examples/js/default-format.js %}
+            {% endhighlight %}
+        </div>
+    </div>
+</div>

@@ -1,0 +1,25 @@
+<div class="datevalidator-example">
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="#minmax-form-tab" data-toggle="tab">Try it</a></li>
+        <li><a href="#minmax-html-tab" data-toggle="tab">HTML</a></li>
+        <li><a href="#minmax-js-tab" data-toggle="tab">JS</a></li>
+    </ul>
+
+    <div class="tab-content">
+        <div class="tab-pane active" id="minmax-form-tab">
+            {% include examples/html/min-max-date.html %}
+        </div>
+
+        <div class="tab-pane" id="minmax-html-tab">
+            {% highlight html %}
+            {% include examples/html/min-max-date.html %}
+            {% endhighlight %}
+        </div>
+
+        <div class="tab-pane" id="minmax-js-tab">
+            {% highlight javascript hl_lines="5 6 7 8 9 10" %}
+            {% include examples/js/min-max-date.js %}
+            {% endhighlight %}
+        </div>
+    </div>
+</div>

@@ -80,8 +80,52 @@ title: Date-validator by Arkni Brahim
                         <td><code>YYYY</code></td>
                         <td>Year represented by four digits.</td>
                     </tr>
+                    <tr>
+                        <td><code>h</code></td>
+                        <td>Hours; no leading zero for single-digit hours (12-hour clock).</td>
+                    </tr>
+                    <tr>
+                        <td><code>hh</code></td>
+                        <td>Hours; leading zero for single-digit hours (12-hour clock).</td>
+                    </tr>
+                    <tr>
+                        <td><code>H</code></td>
+                        <td>Hours; no leading zero for single-digit hours (24-hour clock).</td>
+                    </tr>
+                    <tr>
+                        <td><code>HH</code></td>
+                        <td>Hours; leading zero for single-digit hours (24-hour clock).</td>
+                    </tr>
+                    <tr>
+                        <td><code>m</code></td>
+                        <td>Minutes; no leading zero for single-digit minutes.</td>
+                    </tr>
+                    <tr>
+                        <td><code>mm</code></td>
+                        <td>Minutes; leading zero for single-digit minutes.</td>
+                    </tr>
+                    <tr>
+                        <td><code>s</code></td>
+                        <td>Seconds; no leading zero for single-digit seconds.</td>
+                    </tr>
+                    <tr>
+                        <td><code>ss</code></td>
+                        <td>Seconds; leading zero for single-digit seconds.</td>
+                    </tr>
+                    <tr>
+                        <td><code>A</code><sup>*</sup></td>
+                        <td>AM PM</td>
+                    </tr>
+                    <tr>
+                        <td><code>a</code><sup>*</sup></td>
+                        <td>am pm</td>
+                    </tr>
                 </tbody>
             </table>
+        </div>
+
+        <div class="callout callout-info info">
+            <p><sup>*</sup> — <code>A</code> and <code>a</code> used only with <code>hh</code> or <code>h</code>.</p>
         </div>
 
         <p>Below are some examples of possible formats:</p>
@@ -98,6 +142,12 @@ title: Date-validator by Arkni Brahim
             <li><code>M/D/YY</code></li>
             <li><code>M-D-YY</code></li>
             <li><code>M.D.YY</code></li>
+            <li><code>YYYY-MM-DD HH:mm:ss</code></li>
+            <li><code>YYYY-MM-DD H:m:s</code></li>
+            <li><code>YYYY-MM-DD hh:mm:ss A</code></li>
+            <li><code>YYYY-MM-DD hh:mm:ss a</code></li>
+            <li><code>YYYY-MM-DD h:m:s A</code></li>
+            <li><code>YYYY-MM-DD h:m:s a</code></li>
             <li><code>...</code></li>
         </ul>
     </section>
@@ -105,15 +155,18 @@ title: Date-validator by Arkni Brahim
     <section>
         <h2 id="usage-examples">Usage examples</h2>
         <h3 id="default-format-separator-example">Using default format & separator</h3><br/>
-        {% include default-format.html %}
+        {% include examples/default-format.html %}
 
         <h3 id="custom-format-separator-example">Using custom format & separator</h3><br/>
-        {% include custom-format.html %}
+        {% include examples/custom-format.html %}
+
+        <h3 id="date-time-example">Using custom format & separator (date time value)</h3><br/>
+        {% include examples/date-time.html %}
 
         <h3 id="array-format-example">Using an array of formats</h3><br/>
-        {% include array-format.html %}
+        {% include examples/array-format.html %}
 
         <h3 id="min-max-example">Using minDate & maxDate options</h3><br/>
-        {% include min-max-date.html %}
+        {% include examples/min-max-date.html %}
     </section>
 </div>
