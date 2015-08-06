@@ -100,11 +100,6 @@
 		month = dateValue[ $.inArray( "MM", dateFormat ) ] || dateValue[ $.inArray( "M", dateFormat ) ];
 		day   = dateValue[ $.inArray( "DD", dateFormat ) ] || dateValue[ $.inArray( "D", dateFormat ) ];
 
-		// Get the initial length of the year, month & day
-		yearLength  = year.length;
-		monthLength = month.length;
-		dayLength   = day.length;
-
 		// Retrieve the year, the month & the day tokens.
 		yearToken  = dateFormat[ $.inArray( "YYYY", dateFormat ) ] || dateFormat[ $.inArray( "YY", dateFormat ) ];
 		monthToken = dateFormat[ $.inArray( "MM", dateFormat ) ] || dateFormat[ $.inArray( "M", dateFormat ) ];
@@ -114,6 +109,11 @@
 		if ( !year || !month || !day || isNaN( year ) || isNaN( month ) || isNaN( day ) ) {
 			return false;
 		}
+
+		// Get the initial length of the year, month & day
+		yearLength  = year.length;
+		monthLength = month.length;
+		dayLength   = day.length;
 
 		// Validate the year
 		year  = parseInt( year, 10 );
