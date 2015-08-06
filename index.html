@@ -5,14 +5,15 @@
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="A date validator for jquery-validation plugin.">
+    <meta name="keywords" content="jquery, jquery-plugin, jquery-validate, jquery-validation, date, date validator, validation, validate">
+    <meta name="author" content="Brahim Arkni">
     <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
 
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <!-- ================ -->
     <link rel="stylesheet" type="text/css" href="./stylesheets/print.css" media="print" />
     <link rel="stylesheet" type="text/css" href="./stylesheets/stylesheet.css" media="screen" />
     <link rel="stylesheet" type="text/css" href="./stylesheets/pygment_tango.css" media="screen" />
-    <!-- ================ -->
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
 
     <!--[if lt IE 9]>
@@ -34,7 +35,6 @@
     <div id="content-wrapper">
         <div class="inner clearfix">
             <section id="main-content">
-
                 <div id="home">
     <section>
         <h2 id="options">Options</h2><br/>
@@ -52,7 +52,7 @@
                         <td><code>format</code><sup>*</sup></td>
                         <td>String | Array</td>
                         <td>The date format, can be a string or an array of strings.<br/>
-                            It is <code>MM/DD/YYYY</code>, by default</td>
+                            It is <code>DD/MM/YYYY</code>, by default</td>
                     </tr>
                     <tr>
                         <td><code>maxDate</code></td>
@@ -112,8 +112,57 @@
                         <td><code>YYYY</code></td>
                         <td>Year represented by four digits.</td>
                     </tr>
+                    <tr>
+                        <td><code>h</code></td>
+                        <td>Hours; no leading zero for single-digit hours (12-hour clock).</td>
+                    </tr>
+                    <tr>
+                        <td><code>hh</code></td>
+                        <td>Hours; leading zero for single-digit hours (12-hour clock).</td>
+                    </tr>
+                    <tr>
+                        <td><code>H</code></td>
+                        <td>Hours; no leading zero for single-digit hours (24-hour clock).</td>
+                    </tr>
+                    <tr>
+                        <td><code>HH</code></td>
+                        <td>Hours; leading zero for single-digit hours (24-hour clock).</td>
+                    </tr>
+                    <tr>
+                        <td><code>m</code></td>
+                        <td>Minutes; no leading zero for single-digit minutes.</td>
+                    </tr>
+                    <tr>
+                        <td><code>mm</code></td>
+                        <td>Minutes; leading zero for single-digit minutes.</td>
+                    </tr>
+                    <tr>
+                        <td><code>s</code></td>
+                        <td>Seconds; no leading zero for single-digit seconds.</td>
+                    </tr>
+                    <tr>
+                        <td><code>ss</code></td>
+                        <td>Seconds; leading zero for single-digit seconds.</td>
+                    </tr>
+                    <tr>
+                        <td><code>A</code><sup>*</sup></td>
+                        <td>AM PM</td>
+                    </tr>
+                    <tr>
+                        <td><code>a</code><sup>*</sup></td>
+                        <td>am pm</td>
+                    </tr>
                 </tbody>
             </table>
+        </div>
+
+        <div class="callout callout-info info">
+            <p>
+                <sup>*</sup> — <code>A</code> and <code>a</code> tokens are used only with <code>hh</code> or <code>h</code>.
+            </p>
+            <p>
+                A <code>SyntaxError</code> is thrown if you are using one of them with <code>'HH'</code> or <code>'H'</code>.
+            </p>
         </div>
 
         <p>Below are some examples of possible formats:</p>
@@ -130,6 +179,14 @@
             <li><code>M/D/YY</code></li>
             <li><code>M-D-YY</code></li>
             <li><code>M.D.YY</code></li>
+            <li><code>YYYY-MM-DD HH:mm</code></li>
+            <li><code>YYYY-MM-DD HH:mm:ss</code></li>
+            <li><code>YYYY-MM-DD H:m:s</code></li>
+            <li><code>YYYY-MM-DD hh:mm</code></li>
+            <li><code>YYYY-MM-DD hh:mm:ss A</code></li>
+            <li><code>YYYY-MM-DD hh:mm:ss a</code></li>
+            <li><code>YYYY-MM-DD h:m:s A</code></li>
+            <li><code>YYYY-MM-DD h:m:s a</code></li>
             <li><code>...</code></li>
         </ul>
     </section>
@@ -150,23 +207,24 @@
     <div class="tab-content">
         <div class="tab-pane active" id="default-form-tab">
             <form id="dateForm" method="post" class="form-horizontal">
-                <div class="form-group">
-                    <label class="col-md-3 control-label">Date</label>
-                    <div class="col-md-6">
-                        <input type="text" class="form-control" name="date" placeholder="DD/MM/YYYY" />
-                    </div>
-                </div>
+    <div class="form-group">
+        <label class="col-md-3 control-label">Date</label>
+        <div class="col-md-6">
+            <input type="text" class="form-control" name="date" placeholder="DD/MM/YYYY" />
+        </div>
+    </div>
 
-                <div class="form-group">
-                    <div class="col-md-6 col-md-offset-3">
-                        <button type="submit" class="btn btn-default">Validate</button>
-                    </div>
-                </div>
-            </form>
+    <div class="form-group">
+        <div class="col-md-6 col-md-offset-3">
+            <button type="submit" class="btn btn-default">Validate</button>
+        </div>
+    </div>
+</form>
+
         </div>
 
         <div class="tab-pane" id="default-html-tab">
-<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;form</span> <span class="na">id=</span><span class="s">&quot;dateForm&quot;</span> <span class="na">method=</span><span class="s">&quot;post&quot;</span> <span class="na">class=</span><span class="s">&quot;form-horizontal&quot;</span><span class="nt">&gt;</span>
+            <div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;form</span> <span class="na">id=</span><span class="s">&quot;dateForm&quot;</span> <span class="na">method=</span><span class="s">&quot;post&quot;</span> <span class="na">class=</span><span class="s">&quot;form-horizontal&quot;</span><span class="nt">&gt;</span>
     <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;form-group&quot;</span><span class="nt">&gt;</span>
         <span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">&quot;col-md-3 control-label&quot;</span><span class="nt">&gt;</span>Date<span class="nt">&lt;/label&gt;</span>
         <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;col-md-6&quot;</span><span class="nt">&gt;</span>
@@ -183,18 +241,18 @@
         </div>
 
         <div class="tab-pane" id="default-js-tab">
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#dateForm&#39;</span><span class="p">)</span>
-    <span class="p">.</span><span class="nx">validate</span><span class="p">({</span>
-        <span class="nx">rules</span><span class="o">:</span> <span class="p">{</span>
-            <span class="nx">date</span><span class="o">:</span> <span class="p">{</span>
-                <span class="nx">required</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-<span class="hll">                <span class="nx">dateValidator</span><span class="o">:</span> <span class="kc">true</span> <span class="c1">// Or {}</span>
-</span>            <span class="p">}</span>
-        <span class="p">}</span>
-    <span class="p">});</span></code></pre></div>
+            <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#dateForm&#39;</span><span class="p">).</span><span class="nx">validate</span><span class="p">({</span>
+    <span class="nx">rules</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">date</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">required</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+<span class="hll">            <span class="nx">dateValidator</span><span class="o">:</span> <span class="kc">true</span> <span class="c1">// Or {}</span>
+</span>        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">});</span></code></pre></div>
         </div>
     </div>
 </div>
+
 
         <h3 id="custom-format-separator-example">Using custom format & separator</h3><br/>
         <div class="datevalidator-example">
@@ -207,23 +265,24 @@
     <div class="tab-content">
         <div class="tab-pane active" id="custom-form-tab">
             <form id="customDateForm" method="post" class="form-horizontal">
-                <div class="form-group">
-                    <label class="col-md-3 control-label">Date</label>
-                    <div class="col-md-6">
-                        <input type="text" class="form-control" name="date" placeholder="YYYY-MM-DD" />
-                    </div>
-                </div>
+    <div class="form-group">
+        <label class="col-md-3 control-label">Date</label>
+        <div class="col-md-6">
+            <input type="text" class="form-control" name="date" placeholder="YYYY-MM-DD" />
+        </div>
+    </div>
 
-                <div class="form-group">
-                    <div class="col-md-6 col-md-offset-3">
-                        <button type="submit" class="btn btn-default">Validate</button>
-                    </div>
-                </div>
-            </form>
+    <div class="form-group">
+        <div class="col-md-6 col-md-offset-3">
+            <button type="submit" class="btn btn-default">Validate</button>
+        </div>
+    </div>
+</form>
+
         </div>
 
         <div class="tab-pane" id="custom-html-tab">
-<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;form</span> <span class="na">id=</span><span class="s">&quot;customDateForm&quot;</span> <span class="na">method=</span><span class="s">&quot;post&quot;</span> <span class="na">class=</span><span class="s">&quot;form-horizontal&quot;</span><span class="nt">&gt;</span>
+            <div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;form</span> <span class="na">id=</span><span class="s">&quot;customDateForm&quot;</span> <span class="na">method=</span><span class="s">&quot;post&quot;</span> <span class="na">class=</span><span class="s">&quot;form-horizontal&quot;</span><span class="nt">&gt;</span>
     <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;form-group&quot;</span><span class="nt">&gt;</span>
         <span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">&quot;col-md-3 control-label&quot;</span><span class="nt">&gt;</span>Date<span class="nt">&lt;/label&gt;</span>
         <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;col-md-6&quot;</span><span class="nt">&gt;</span>
@@ -240,21 +299,92 @@
         </div>
 
         <div class="tab-pane" id="custom-js-tab">
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#customDateForm&#39;</span><span class="p">)</span>
-    <span class="p">.</span><span class="nx">validate</span><span class="p">({</span>
-        <span class="nx">rules</span><span class="o">:</span> <span class="p">{</span>
-            <span class="nx">date</span><span class="o">:</span> <span class="p">{</span>
-                <span class="nx">required</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-<span class="hll">                <span class="nx">dateValidator</span><span class="o">:</span> <span class="p">{</span>
-</span><span class="hll">                    <span class="nx">format</span><span class="o">:</span> <span class="s1">&#39;YYYY-MM-DD&#39;</span><span class="p">,</span>
-</span><span class="hll">                    <span class="nx">separator</span><span class="o">:</span> <span class="s1">&#39;-&#39;</span>
-</span><span class="hll">                <span class="p">}</span>
-</span>            <span class="p">}</span>
+            <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#customDateForm&#39;</span><span class="p">).</span><span class="nx">validate</span><span class="p">({</span>
+    <span class="nx">rules</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">date</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">required</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+<span class="hll">            <span class="nx">dateValidator</span><span class="o">:</span> <span class="p">{</span>
+</span><span class="hll">                <span class="nx">format</span><span class="o">:</span> <span class="s1">&#39;YYYY-MM-DD&#39;</span><span class="p">,</span>
+</span><span class="hll">                <span class="nx">separator</span><span class="o">:</span> <span class="s1">&#39;-&#39;</span>
+</span><span class="hll">            <span class="p">}</span>
+</span>        <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="nx">messages</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">date</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">dateValidator</span><span class="o">:</span> <span class="s2">&quot;Please enter a valid date (Format YYYY-MM-DD).&quot;</span>
         <span class="p">}</span>
-    <span class="p">});</span></code></pre></div>
+    <span class="p">}</span>
+<span class="p">});</span></code></pre></div>
         </div>
     </div>
 </div>
+
+
+        <h3 id="date-time-example">Using custom format & separator (date time value)</h3><br/>
+        <div class="datevalidator-example">
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="#datetime-form-tab" data-toggle="tab">Try it</a></li>
+        <li><a href="#datetime-html-tab" data-toggle="tab">HTML</a></li>
+        <li><a href="#datetime-js-tab" data-toggle="tab">JS</a></li>
+    </ul>
+
+    <div class="tab-content">
+        <div class="tab-pane active" id="datetime-form-tab">
+            <form id="dateTimeForm" method="post" class="form-horizontal">
+    <div class="form-group">
+        <label class="col-md-3 control-label">Date</label>
+        <div class="col-md-6">
+            <input type="text" class="form-control" name="date" placeholder="YYYY-MM-DD HH:mm" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-6 col-md-offset-3">
+            <button type="submit" class="btn btn-default">Validate</button>
+        </div>
+    </div>
+</form>
+
+        </div>
+
+        <div class="tab-pane" id="datetime-html-tab">
+            <div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;form</span> <span class="na">id=</span><span class="s">&quot;dateTimeForm&quot;</span> <span class="na">method=</span><span class="s">&quot;post&quot;</span> <span class="na">class=</span><span class="s">&quot;form-horizontal&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;form-group&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">&quot;col-md-3 control-label&quot;</span><span class="nt">&gt;</span>Date<span class="nt">&lt;/label&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;col-md-6&quot;</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;text&quot;</span> <span class="na">class=</span><span class="s">&quot;form-control&quot;</span> <span class="na">name=</span><span class="s">&quot;date&quot;</span> <span class="na">placeholder=</span><span class="s">&quot;YYYY-MM-DD HH:mm&quot;</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;form-group&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;col-md-6 col-md-offset-3&quot;</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;button</span> <span class="na">type=</span><span class="s">&quot;submit&quot;</span> <span class="na">class=</span><span class="s">&quot;btn btn-default&quot;</span><span class="nt">&gt;</span>Validate<span class="nt">&lt;/button&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/form&gt;</span></code></pre></div>
+        </div>
+
+        <div class="tab-pane" id="datetime-js-tab">
+            <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#dateTimeForm&#39;</span><span class="p">).</span><span class="nx">validate</span><span class="p">({</span>
+    <span class="nx">rules</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">date</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">required</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+<span class="hll">            <span class="nx">dateValidator</span><span class="o">:</span> <span class="p">{</span>
+</span><span class="hll">                <span class="nx">format</span><span class="o">:</span> <span class="s1">&#39;YYYY-MM-DD HH:mm&#39;</span><span class="p">,</span>
+</span><span class="hll">                <span class="nx">separator</span><span class="o">:</span> <span class="s1">&#39;-&#39;</span>
+</span><span class="hll">            <span class="p">}</span>
+</span>        <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="nx">messages</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">date</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">dateValidator</span><span class="o">:</span> <span class="s2">&quot;Please enter a valid date (Format YYYY-MM-DD HH:mm).&quot;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">});</span></code></pre></div>
+        </div>
+    </div>
+</div>
+
 
         <h3 id="array-format-example">Using an array of formats</h3><br/>
         <div class="datevalidator-example">
@@ -267,23 +397,24 @@
     <div class="tab-content">
         <div class="tab-pane active" id="array-format-form-tab">
             <form id="arrayDateForm" method="post" class="form-horizontal">
-                <div class="form-group">
-                    <label class="col-md-3 control-label">Date</label>
-                    <div class="col-md-6">
-                        <input type="text" class="form-control" name="date" placeholder="DD-MM-YYYY, D-M-YYYY, D-M-YY" />
-                    </div>
-                </div>
+    <div class="form-group">
+        <label class="col-md-3 control-label">Date</label>
+        <div class="col-md-6">
+            <input type="text" class="form-control" name="date" placeholder="DD-MM-YYYY, D-M-YYYY, D-M-YY" />
+        </div>
+    </div>
 
-                <div class="form-group">
-                    <div class="col-md-6 col-md-offset-3">
-                        <button type="submit" class="btn btn-default">Validate</button>
-                    </div>
-                </div>
-            </form>
+    <div class="form-group">
+        <div class="col-md-6 col-md-offset-3">
+            <button type="submit" class="btn btn-default">Validate</button>
+        </div>
+    </div>
+</form>
+
         </div>
 
         <div class="tab-pane" id="array-format-html-tab">
-<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;form</span> <span class="na">id=</span><span class="s">&quot;arrayDateForm&quot;</span> <span class="na">method=</span><span class="s">&quot;post&quot;</span> <span class="na">class=</span><span class="s">&quot;form-horizontal&quot;</span><span class="nt">&gt;</span>
+            <div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;form</span> <span class="na">id=</span><span class="s">&quot;arrayDateForm&quot;</span> <span class="na">method=</span><span class="s">&quot;post&quot;</span> <span class="na">class=</span><span class="s">&quot;form-horizontal&quot;</span><span class="nt">&gt;</span>
     <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;form-group&quot;</span><span class="nt">&gt;</span>
         <span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">&quot;col-md-3 control-label&quot;</span><span class="nt">&gt;</span>Date<span class="nt">&lt;/label&gt;</span>
         <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;col-md-6&quot;</span><span class="nt">&gt;</span>
@@ -300,21 +431,26 @@
         </div>
 
         <div class="tab-pane" id="array-format-js-tab">
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#arrayDateForm&#39;</span><span class="p">)</span>
-    <span class="p">.</span><span class="nx">validate</span><span class="p">({</span>
-        <span class="nx">rules</span><span class="o">:</span> <span class="p">{</span>
-            <span class="nx">date</span><span class="o">:</span> <span class="p">{</span>
-                <span class="nx">required</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-<span class="hll">                <span class="nx">dateValidator</span><span class="o">:</span> <span class="p">{</span>
-</span><span class="hll">                    <span class="nx">format</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;DD-MM-YYYY&#39;</span><span class="p">,</span> <span class="s1">&#39;D-M-YYYY&#39;</span><span class="p">,</span> <span class="s1">&#39;D-M-YY&#39;</span><span class="p">],</span>
-</span><span class="hll">                    <span class="nx">separator</span><span class="o">:</span> <span class="s1">&#39;-&#39;</span>
-</span><span class="hll">                <span class="p">}</span>
-</span>            <span class="p">}</span>
+            <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#arrayDateForm&#39;</span><span class="p">).</span><span class="nx">validate</span><span class="p">({</span>
+    <span class="nx">rules</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">date</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">required</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+<span class="hll">            <span class="nx">dateValidator</span><span class="o">:</span> <span class="p">{</span>
+</span><span class="hll">                <span class="nx">format</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;DD-MM-YYYY&#39;</span><span class="p">,</span> <span class="s1">&#39;D-M-YYYY&#39;</span><span class="p">,</span> <span class="s1">&#39;D-M-YY&#39;</span><span class="p">],</span>
+</span><span class="hll">                <span class="nx">separator</span><span class="o">:</span> <span class="s1">&#39;-&#39;</span>
+</span><span class="hll">            <span class="p">}</span>
+</span>        <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="nx">messages</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">date</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">dateValidator</span><span class="o">:</span> <span class="s2">&quot;Please enter a valid date (Format: &#39;DD-MM-YYYY&#39;, &#39;D-M-YYYY&#39;, &#39;D-M-YY&#39;).&quot;</span>
         <span class="p">}</span>
-    <span class="p">});</span></code></pre></div>
+    <span class="p">}</span>
+<span class="p">});</span></code></pre></div>
         </div>
     </div>
 </div>
+
 
         <h3 id="min-max-example">Using minDate & maxDate options</h3><br/>
         <div class="datevalidator-example">
@@ -327,27 +463,28 @@
     <div class="tab-content">
         <div class="tab-pane active" id="minmax-form-tab">
             <form id="minMaxForm" method="post" class="form-horizontal">
-                <div class="form-group">
-                    <label class="col-md-3 control-label">Date</label>
-                    <div class="col-md-6">
-                        <input type="text" class="form-control" name="date" placeholder="DD-MM-YYYY" />
-                    </div>
-                </div>
+    <div class="form-group">
+        <label class="col-md-3 control-label">Date</label>
+        <div class="col-md-6">
+            <input type="text" class="form-control" name="date" placeholder="YYYY-DD-MM" />
+        </div>
+    </div>
 
-                <div class="form-group">
-                    <div class="col-md-6 col-md-offset-3">
-                        <button type="submit" class="btn btn-default">Validate</button>
-                    </div>
-                </div>
-            </form>
+    <div class="form-group">
+        <div class="col-md-6 col-md-offset-3">
+            <button type="submit" class="btn btn-default">Validate</button>
+        </div>
+    </div>
+</form>
+
         </div>
 
         <div class="tab-pane" id="minmax-html-tab">
-<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;form</span> <span class="na">id=</span><span class="s">&quot;minMaxForm&quot;</span> <span class="na">method=</span><span class="s">&quot;post&quot;</span> <span class="na">class=</span><span class="s">&quot;form-horizontal&quot;</span><span class="nt">&gt;</span>
+            <div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;form</span> <span class="na">id=</span><span class="s">&quot;minMaxForm&quot;</span> <span class="na">method=</span><span class="s">&quot;post&quot;</span> <span class="na">class=</span><span class="s">&quot;form-horizontal&quot;</span><span class="nt">&gt;</span>
     <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;form-group&quot;</span><span class="nt">&gt;</span>
         <span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">&quot;col-md-3 control-label&quot;</span><span class="nt">&gt;</span>Date<span class="nt">&lt;/label&gt;</span>
         <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;col-md-6&quot;</span><span class="nt">&gt;</span>
-            <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;text&quot;</span> <span class="na">class=</span><span class="s">&quot;form-control&quot;</span> <span class="na">name=</span><span class="s">&quot;date&quot;</span> <span class="na">placeholder=</span><span class="s">&quot;DD-MM-YYYY&quot;</span> <span class="nt">/&gt;</span>
+            <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;text&quot;</span> <span class="na">class=</span><span class="s">&quot;form-control&quot;</span> <span class="na">name=</span><span class="s">&quot;date&quot;</span> <span class="na">placeholder=</span><span class="s">&quot;YYYY-DD-MM&quot;</span> <span class="nt">/&gt;</span>
         <span class="nt">&lt;/div&gt;</span>
     <span class="nt">&lt;/div&gt;</span>
 
@@ -360,23 +497,28 @@
         </div>
 
         <div class="tab-pane" id="minmax-js-tab">
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#minMaxForm&#39;</span><span class="p">)</span>
-    <span class="p">.</span><span class="nx">validate</span><span class="p">({</span>
-        <span class="nx">rules</span><span class="o">:</span> <span class="p">{</span>
-            <span class="nx">date</span><span class="o">:</span> <span class="p">{</span>
-                <span class="nx">required</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
-<span class="hll">                <span class="nx">dateValidator</span><span class="o">:</span> <span class="p">{</span>
-</span><span class="hll">                    <span class="nx">format</span><span class="o">:</span> <span class="s1">&#39;DD-MM-YYYY&#39;</span><span class="p">,</span>
-</span><span class="hll">                    <span class="nx">separator</span><span class="o">:</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span>
-</span><span class="hll">                    <span class="nx">minDate</span><span class="o">:</span> <span class="s2">&quot;01-01-2014&quot;</span><span class="p">,</span>  <span class="c1">// Or new Date( 2014, 0, 1 )</span>
-</span><span class="hll">                    <span class="nx">maxDate</span><span class="o">:</span> <span class="s2">&quot;01-01-2016&quot;</span>   <span class="c1">// Or new Date( 2016, 0, 1 )</span>
-</span><span class="hll">                <span class="p">}</span>
-</span>            <span class="p">}</span>
+            <div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">$</span><span class="p">(</span><span class="s1">&#39;#minMaxForm&#39;</span><span class="p">).</span><span class="nx">validate</span><span class="p">({</span>
+    <span class="nx">rules</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">date</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">required</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+<span class="hll">            <span class="nx">dateValidator</span><span class="o">:</span> <span class="p">{</span>
+</span><span class="hll">                <span class="nx">format</span><span class="o">:</span> <span class="s1">&#39;YYYY-MM-DD&#39;</span><span class="p">,</span>
+</span><span class="hll">                <span class="nx">separator</span><span class="o">:</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span>
+</span><span class="hll">                <span class="nx">minDate</span><span class="o">:</span> <span class="s2">&quot;2014-01-01&quot;</span><span class="p">,</span>  <span class="c1">// Or new Date( 2014, 0, 1 )</span>
+</span><span class="hll">                <span class="nx">maxDate</span><span class="o">:</span> <span class="s2">&quot;2016-01-01&quot;</span>   <span class="c1">// Or new Date( 2016, 0, 1 )</span>
+</span><span class="hll">            <span class="p">}</span>
+</span>        <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="nx">messages</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">date</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">dateValidator</span><span class="o">:</span> <span class="s2">&quot;Please enter a date between 2014-01-01 and 2016-01-01.&quot;</span>
         <span class="p">}</span>
-    <span class="p">});</span></code></pre></div>
+    <span class="p">}</span>
+<span class="p">});</span></code></pre></div>
         </div>
     </div>
 </div>
+
     </section>
 </div>
 
@@ -392,7 +534,6 @@
 
                 <p class="repo-owner"><a href="https://github.com/Arkni/date-validator">date-validator</a> is maintained by <a href="https://github.com/Arkni">Arkni</a>.</p>
 
-
                 <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
             </aside>
         </div>
@@ -403,6 +544,87 @@
     <script src="//cdn.jsdelivr.net/jquery.validation/1.14.0/jquery.validate.min.js"></script>
     <script src="./js/date-validator.min.js"></script>
     <script src="./js/main.js"></script>
+    <script type="text/javascript">
+$('#dateForm').validate({
+    rules: {
+        date: {
+            required: true,
+            dateValidator: true // Or {}
+        }
+    }
+});
+
+$('#customDateForm').validate({
+    rules: {
+        date: {
+            required: true,
+            dateValidator: {
+                format: 'YYYY-MM-DD',
+                separator: '-'
+            }
+        }
+    },
+    messages: {
+        date: {
+            dateValidator: "Please enter a valid date (Format YYYY-MM-DD)."
+        }
+    }
+});
+
+$('#dateTimeForm').validate({
+    rules: {
+        date: {
+            required: true,
+            dateValidator: {
+                format: 'YYYY-MM-DD HH:mm',
+                separator: '-'
+            }
+        }
+    },
+    messages: {
+        date: {
+            dateValidator: "Please enter a valid date (Format YYYY-MM-DD HH:mm)."
+        }
+    }
+});
+
+$('#arrayDateForm').validate({
+    rules: {
+        date: {
+            required: true,
+            dateValidator: {
+                format: ['DD-MM-YYYY', 'D-M-YYYY', 'D-M-YY'],
+                separator: '-'
+            }
+        }
+    },
+    messages: {
+        date: {
+            dateValidator: "Please enter a valid date (Format: 'DD-MM-YYYY', 'D-M-YYYY', 'D-M-YY')."
+        }
+    }
+});
+
+$('#minMaxForm').validate({
+    rules: {
+        date: {
+            required: true,
+            dateValidator: {
+                format: 'YYYY-MM-DD',
+                separator: '-',
+                minDate: "2014-01-01",  // Or new Date( 2014, 0, 1 )
+                maxDate: "2016-01-01"   // Or new Date( 2016, 0, 1 )
+            }
+        }
+    },
+    messages: {
+        date: {
+            dateValidator: "Please enter a date between 2014-01-01 and 2016-01-01."
+        }
+    }
+});
+
+    </script>
 </body>
 
 </html>
