@@ -20,7 +20,7 @@ title: Date-validator by Arkni Brahim
                         <td><code>format</code><sup>*</sup></td>
                         <td>String | Array</td>
                         <td>The date format, can be a string or an array of strings.<br/>
-                            It is <code>MM/DD/YYYY</code>, by default</td>
+                            It is <code>DD/MM/YYYY</code>, by default</td>
                     </tr>
                     <tr>
                         <td><code>maxDate</code></td>
@@ -125,7 +125,12 @@ title: Date-validator by Arkni Brahim
         </div>
 
         <div class="callout callout-info info">
-            <p><sup>*</sup> — <code>A</code> and <code>a</code> used only with <code>hh</code> or <code>h</code>.</p>
+            <p>
+                <sup>*</sup> — <code>A</code> and <code>a</code> tokens are used only with <code>hh</code> or <code>h</code>.
+            </p>
+            <p>
+                A <code>SyntaxError</code> is thrown if you are using one of them with <code>'HH'</code> or <code>'H'</code>.
+            </p>
         </div>
 
         <p>Below are some examples of possible formats:</p>
@@ -142,8 +147,10 @@ title: Date-validator by Arkni Brahim
             <li><code>M/D/YY</code></li>
             <li><code>M-D-YY</code></li>
             <li><code>M.D.YY</code></li>
+            <li><code>YYYY-MM-DD HH:mm</code></li>
             <li><code>YYYY-MM-DD HH:mm:ss</code></li>
             <li><code>YYYY-MM-DD H:m:s</code></li>
+            <li><code>YYYY-MM-DD hh:mm</code></li>
             <li><code>YYYY-MM-DD hh:mm:ss A</code></li>
             <li><code>YYYY-MM-DD hh:mm:ss a</code></li>
             <li><code>YYYY-MM-DD h:m:s A</code></li>

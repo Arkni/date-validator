@@ -12,9 +12,9 @@ timezone:             Africa/Casablanca
 
 # Site settings
 title:                Date Validator
-email:                brahim.arkni@gmail.com
 description:          A date validator for jquery-validation plugin.
-twitter_username:     BrahimArkni
+keywords:             jquery, jquery-plugin, jquery-validate, jquery-validation, date, date validator, validation, validate
+fullname:             Brahim Arkni
 github_username:      Arkni
 repository:
   source:             https://github.com/Arkni/date-validator

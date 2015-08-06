@@ -1,4 +1,4 @@
-$('#dateTimeDateForm').validate({
+$('#dateTimeForm').validate({
     rules: {
         date: {
             required: true,
