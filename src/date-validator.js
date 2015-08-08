@@ -177,7 +177,7 @@
 			}
 			break;
 		case ( "DD" ):
-			if ( monthLength !== 2 ) {
+			if ( dayLength !== 2 ) {
 				return false;
 			}
 			break;
