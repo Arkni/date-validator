@@ -322,6 +322,67 @@
 		return true;
 	}
 
+	/**
+	 * This function is based on the dateFormat function from the Date Format 1.2.3
+	 * Credit to (c) 2007-2009 Steven Levithan <stevenlevithan.com>
+	 * MIT license
+	 * see http://blog.stevenlevithan.com/archives/date-time-format for the complete lib
+	 *
+	 * Return the date string formatted following the format provided as param
+	 *
+	 * @param {Date} date      The date object to format
+	 * @param {String} format  The date format
+	 *
+	 * @returns {String}
+	 */
+	function dateFormater( date, format ) {
+		var	token = /D{1,2}|M{1,2}|YY(?:YY)?|([HhmsAa])\1?|"[^"]*"|'[^']*'/g,
+			pad = function( val ) {
+				val = "" + val;
+				while ( val.length < 2 ) {
+					val = "0" + val;
+				}
+				return val;
+			},
+			amOrPm = function( hours, token) {
+				if ( token === "a" ) {
+					return hours <= 12 ? "am" : "pm";
+				}
+				return hours <= 12 ? "AM" : "PM";
+			}, flags;
+
+		// Passing date through Date applies Date.parse, if necessary
+		date = date ? new Date(date) : new Date();
+
+		// This is not supposed to happen, but play it safe.
+		if ( isNaN( date ) ) {
+			throw new SyntaxError( "invalid date" );
+		}
+
+		flags = {
+			D:    date.getDate(),
+			DD:   pad( date.getDate() ),
+			M:    date.getMonth() + 1,
+			MM:   pad( date.getMonth() + 1 ),
+			YY:   String( date.getFullYear() ).slice( 2 ),
+			YYYY: date.getFullYear(),
+			h:    date.getHours() % 12 || 12,
+			hh:   pad( date.getHours() % 12 || 12 ),
+			H:    date.getHours(),
+			HH:   pad( date.getHours() ),
+			m:    date.getMinutes(),
+			mm:   pad( date.getMinutes() ),
+			s:    date.getSeconds(),
+			ss:   pad( date.getSeconds() ),
+			a:    amOrPm( date.getHours(), "a" ),
+			A:    amOrPm( date.getHours(), "A" )
+		};
+
+		return format.replace( token, function( match ) {
+			return match in flags ? flags[ match ] : match.slice( 1, match.length - 1 );
+		});
+	}
+
 	/*
 	 * dateValidator validator:
 	 *     check if the given date is valid following the given format.
@@ -386,6 +447,9 @@
 			timeValue  = ( values.length > 1 ) ? values[ 1 ] : null;
 			amOrPmValue = ( values.length > 2 ) ? values[ 2 ] : null;
 
+			// Set the default message
+			$.validator.messages.dateValidator = $.validator.messages.dateValidatorMessages["default"]( format );
+
 			// Check if formats & values have the same length
 			// If no, exit with error
 			if ( formats.length !== values.length ) {
@@ -416,12 +480,28 @@
 			switch ( true ) {
 			case ( options.minDate && !options.maxDate && valid ):
 				valid = date.getTime() >= minDate.getTime();
+
+				// Format the minDate if it is an instance of Date object
+				minDate = options.minDate instanceof Date ? dateFormater( minDate, format ) : options.minDate;
+				// Set the new error message based on the minDate value.
+				$.validator.messages.dateValidator = $.validator.messages.dateValidatorMessages.minDate( minDate );
 				break;
 			case ( options.maxDate && !options.minDate && valid ):
 				valid = date.getTime() <= maxDate.getTime();
+
+				// Format the maxDate if it is an instance of Date object
+				maxDate = options.maxDate instanceof Date ? dateFormater( maxDate, format ) : options.maxDate;
+				// Set the new error message based on the maxDate value.
+				$.validator.messages.dateValidator = $.validator.messages.dateValidatorMessages.maxDate( maxDate );
 				break;
 			case ( options.minDate && options.maxDate && valid ):
 				valid = date.getTime() >= minDate.getTime() && date.getTime() <= maxDate.getTime();
+
+				// Format the minDate & the maxDate if they are instances of Date object
+				minDate = options.minDate instanceof Date ? dateFormater( minDate, format ) : options.minDate;
+				maxDate = options.maxDate instanceof Date ? dateFormater( maxDate, format ) : options.maxDate;
+				// Set the new error message based on the minDate & maxDate values.
+				$.validator.messages.dateValidator = $.validator.messages.dateValidatorMessages.range( minDate, maxDate );
 				break;
 			default:
 				break;
@@ -429,5 +509,15 @@
 		}
 
 		return valid;
-	}, $.validator.messages.date);
+	}, $.validator.messages.dateValidator);
+
+	// Adding the dateValidator messages.
+	$.extend($.validator.messages, {
+		dateValidatorMessages: {
+			"default": $.validator.format( "Please enter a valid date, format {0}."),
+			minDate: $.validator.format( "Please enter a date after {0}."),
+			maxDate: $.validator.format( "Please enter a date before {0}."),
+			range: $.validator.format( "Please enter a date between {0} and {1}.")
+		}
+	});
 }());
