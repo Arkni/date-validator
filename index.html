@@ -175,5 +175,25 @@ title: Date-validator by Arkni Brahim
 
         <h3 id="min-max-example">Using minDate & maxDate options</h3><br/>
         {% include examples/min-max-date.html %}
+
+        <div class="callout callout-info info">
+            <p>
+                If you are using date object as value of the <code>minDate</code> or the <code>maxDate</code> option and
+                a date format contains <code>a</code> or <code>A</code> tokens, it's highly recommended to create the date
+                object using the 24 hours system.
+            </p>
+            <p>For example:</p><br/>
+{% highlight javascript %}
+dateValidator: {
+    format: 'YYYY-MM-DD hh:mm:ss A',
+    separator: '-',
+    // This will be converted to '2014-01-01 12:00:00 PM'
+    minDate: new Date( 2014, 0, 1, 12, 0, 0 ),
+    // Don't use 'new Date( 2016, 0, 1, 11, 59, 59)', use this instead.
+    // It will be converted to: '2016-01-01 11:59:59 PM'
+    maxDate: new Date( 2016, 0, 1, 23, 59, 59 )
+}
+{% endhighlight %}
+        </div>
     </section>
 </div>

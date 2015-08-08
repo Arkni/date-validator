@@ -882,6 +882,10 @@ dl dd {
     margin-bottom: 0px;
 }
 
+.callout pre {
+    margin-bottom: 10px;
+}
+
 .callout-info {
     border-left-color: #1b809e !important;
 }

@@ -9,10 +9,5 @@ $('#minMaxForm').validate({
                 maxDate: "2016-01-01"   // Or new Date( 2016, 0, 1 )
             }
         }
-    },
-    messages: {
-        date: {
-            dateValidator: "Please enter a date between 2014-01-01 and 2016-01-01."
-        }
     }
 });
