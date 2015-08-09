@@ -539,7 +539,7 @@ pre {
     overflow: auto;
     text-shadow: none;
     background: #fafafa url(../images/body-bg.jpg) 0 0 repeat !important;
-    border: solid 1px #f2f2f2;
+    /*border: solid 1px #f2f2f2;*/
 }
 
 pre code {
@@ -884,6 +884,7 @@ dl dd {
 
 .callout pre {
     margin-bottom: 10px;
+    padding: 9.5px;
 }
 
 .callout-info {
@@ -897,6 +898,13 @@ dl dd {
     border-left-width: 5px;
     border-radius: 3px;
     background-color: #eee;
+}
+
+.hr {
+    background: #c5c5c5;
+    height: 1px;
+    margin: 30px auto;
+    width: 50%;
 }
 
 /*** Validation CSS ***/

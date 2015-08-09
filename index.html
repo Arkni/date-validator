@@ -157,7 +157,28 @@ title: Date-validator by Arkni Brahim
             <li><code>YYYY-MM-DD h:m:s a</code></li>
             <li><code>...</code></li>
         </ul>
+
+        <div class="hr"></div>
+
+        <div>
+            <div class="callout callout-info info">
+                <p><strong>Notes:</strong></p>
+                <p>DateValidator use the follwoing messages to show errors based on validation level:</p><br/>
+{% highlight javascript %}
+$.extend($.validator.messages, {
+   dateValidatorMessages: {
+      "default": $.validator.format("Please enter a valid date, format {0}."),
+      minDate: $.validator.format("Please enter a date after {0}."),
+      maxDate: $.validator.format("Please enter a date before {0}."),
+      range: $.validator.format("Please enter a date between {0} and {1}.")
+   }
+});
+{% endhighlight %}
+            </div>
+        </div>
     </section>
+
+    <div class="hr"></div>
 
     <section>
         <h2 id="usage-examples">Usage examples</h2>

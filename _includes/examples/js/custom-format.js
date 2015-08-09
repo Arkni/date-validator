@@ -7,10 +7,5 @@ $('#customDateForm').validate({
                 separator: '-'
             }
         }
-    },
-    messages: {
-        date: {
-            dateValidator: "Please enter a valid date (Format YYYY-MM-DD)."
-        }
     }
 });
