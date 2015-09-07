@@ -387,7 +387,7 @@
 	 * dateValidator validator:
 	 *     check if the given date is valid following the given format.
 	 *
-	 * the 'options' param is a JSON like object and has the following structure:
+	 * the 'options' param is an object literal and has the following structure:
 	 *     {
 	 *        format:    "The date format",  // Can be a string or an array of strings
 	 *        separator: "The used separator",
