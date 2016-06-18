@@ -24,18 +24,18 @@
 	QUnit.test( "Using the default format & separator", function( assert ) {
 
 		// Options = true
-		assert.ok( method( "29/12/2006", true ), "Valid date dateValidator (options = true)" );
-		assert.ok( !method( "29-07-2004", true ), "Invalid date dateValidator (options = true)" );
-		assert.ok( !method( "29.06.2011", true ), "Invalid date dateValidator (options = true)" );
-		assert.ok( !method( "31/04/2010", true ), "Invalid date dateValidator (options = true)" );
-		assert.ok( !method( "29/00/2001", true ), "Invalid date dateValidator (options = true)" );
+		assert.ok( method( "29/12/2006", true ), "Valid date (options = true)" );
+		assert.ok( !method( "29-07-2004", true ), "Invalid date (options = true)" );
+		assert.ok( !method( "29.06.2011", true ), "Invalid date (options = true)" );
+		assert.ok( !method( "31/04/2010", true ), "Invalid date (options = true)" );
+		assert.ok( !method( "29/00/2001", true ), "Invalid date (options = true)" );
 
 		// Options = {} : empty object
-		assert.ok( method( "29/11/1998", {} ), "Valid date dateValidator (options = {})" );
-		assert.ok( !method( "29-11-2018", {} ), "Invalid date dateValidator (options = {})" );
-		assert.ok( !method( "29.11.2110", {} ), "Invalid date dateValidator (options = {})" );
-		assert.ok( !method( "31/04/2010", {} ), "Invalid date dateValidator (options = {})" );
-		assert.ok( !method( "029/00/1999", {} ), "Invalid date dateValidator (options = {})" );
+		assert.ok( method( "29/11/1998", {} ), "Valid date (options = {})" );
+		assert.ok( !method( "29-11-2018", {} ), "Invalid date (options = {})" );
+		assert.ok( !method( "29.11.2110", {} ), "Invalid date (options = {})" );
+		assert.ok( !method( "31/04/2010", {} ), "Invalid date (options = {})" );
+		assert.ok( !method( "029/00/1999", {} ), "Invalid date (options = {})" );
 	} );
 
 	QUnit.test( "YYYY{separator}MM{separator}DD", function( assert ) {
@@ -44,42 +44,42 @@
 				format: "YYYY/MM/DD",
 				separator: "/"
 			} ),
-			"Valid date dateValidator (Format: YYYY/MM/DD)"
+			"Valid date (Format: YYYY/MM/DD)"
 		);
 		assert.ok(
 			method( "1885-12-31", {
 				format: "YYYY-MM-DD",
 				separator: "-"
 			} ),
-			"Valid date dateValidator (Format: YYYY-MM-DD)"
+			"Valid date (Format: YYYY-MM-DD)"
 		);
 		assert.ok(
 			method( "1887.12.31", {
 				format: "YYYY.MM.DD",
 				separator: "."
 			} ),
-			"Valid date dateValidator (Format: YYYY.MM.DD)"
+			"Valid date (Format: YYYY.MM.DD)"
 		);
 		assert.ok(
 			!method( "2002/06/32", {
 				format: "YYYY/MM/DD",
 				separator: "/"
 			} ),
-			"Invalid date dateValidator (Format: YYYY/MM/DD)"
+			"Invalid date (Format: YYYY/MM/DD)"
 		);
 		assert.ok(
 			!method( "1989-09-31", {
 				format: "YYYY-MM-DD",
 				separator: "-"
 			} ),
-			"Invalid date dateValidator (Format: YYYY-MM-DD)"
+			"Invalid date (Format: YYYY-MM-DD)"
 		);
 		assert.ok(
 			!method( "1975.02.30", {
 				format: "YYYY.MM.DD",
 				separator: "."
 			} ),
-			"Invalid date dateValidator (Format: YYYY.MM.DD)"
+			"Invalid date (Format: YYYY.MM.DD)"
 		);
 	} );
 
@@ -89,42 +89,42 @@
 				format: "DD/MM/YYYY",
 				separator: "/"
 			} ),
-			"Valid date dateValidator (Format: DD/MM/YYYY)"
+			"Valid date (Format: DD/MM/YYYY)"
 		);
 		assert.ok(
 			method( "29-08-2010", {
 				format: "DD-MM-YYYY",
 				separator: "-"
 			} ),
-			"Valid date dateValidator (Format: DD-MM-YYYY)"
+			"Valid date (Format: DD-MM-YYYY)"
 		);
 		assert.ok(
 			method( "29.09.2010", {
 				format: "DD.MM.YYYY",
 				separator: "."
 			} ),
-			"Valid date dateValidator (Format: DD.MM.YYYY)"
+			"Valid date (Format: DD.MM.YYYY)"
 		);
 		assert.ok(
 			!method( "31/06/1361", {
 				format: "DD/MM/YYYY",
 				separator: "/"
 			} ),
-			"Invalid date dateValidator (Format: DD/MM/YYYY)"
+			"Invalid date (Format: DD/MM/YYYY)"
 		);
 		assert.ok(
 			!method( "31-02-2014", {
 				format: "DD-MM-YYYY",
 				separator: "-"
 			} ),
-			"Invalid date dateValidator (Format: DD-MM-YYYY)"
+			"Invalid date (Format: DD-MM-YYYY)"
 		);
 		assert.ok(
 			!method( "31.04.2014", {
 				format: "DD.MM.YYYY",
 				separator: "."
 			} ),
-			"Invalid date dateValidator (Format: DD.MM.YYYY)"
+			"Invalid date (Format: DD.MM.YYYY)"
 		);
 	} );
 
@@ -134,42 +134,42 @@
 				format: "MM/DD/YYYY",
 				separator: "/"
 			} ),
-			"Valid date dateValidator (Format: MM/DD/YYYY)"
+			"Valid date (Format: MM/DD/YYYY)"
 		);
 		assert.ok(
 			method( "11-15-2005", {
 				format: "MM-DD-YYYY",
 				separator: "-"
 			} ),
-			"Valid date dateValidator (Format: MM-DD-YYYY)"
+			"Valid date (Format: MM-DD-YYYY)"
 		);
 		assert.ok(
 			method( "11.11.2005", {
 				format: "MM.DD.YYYY",
 				separator: "."
 			} ),
-			"Valid date dateValidator (Format: MM.DD.YYYY)"
+			"Valid date (Format: MM.DD.YYYY)"
 		);
 		assert.ok(
 			!method( "06/31/1999", {
 				format: "MM/DD/YYYY",
 				separator: "/"
 			} ),
-			"Invalid date dateValidator (Format: MM/DD/YYYY)"
+			"Invalid date (Format: MM/DD/YYYY)"
 		);
 		assert.ok(
 			!method( "02-30-2004", {
 				format: "MM-DD-YYYY",
 				separator: "-"
 			} ),
-			"Invalid date dateValidator (Format: MM-DD-YYYY)"
+			"Invalid date (Format: MM-DD-YYYY)"
 		);
 		assert.ok(
 			!method( "04.31.2003", {
 				format: "MM.DD.YYYY",
 				separator: "."
 			} ),
-			"Invalid date dateValidator (Format: MM.DD.YYYY)"
+			"Invalid date (Format: MM.DD.YYYY)"
 		);
 	} );
 
@@ -179,42 +179,42 @@
 				format: "YY/M/D",
 				separator: "/"
 			} ),
-			"Valid date dateValidator (Format: YY/M/D)"
+			"Valid date (Format: YY/M/D)"
 		);
 		assert.ok(
 			method( "85-2-1", {
 				format: "YY-M-D",
 				separator: "-"
 			} ),
-			"Valid date dateValidator (Format: YY-M-D)"
+			"Valid date (Format: YY-M-D)"
 		);
 		assert.ok(
 			method( "87.12.31", {
 				format: "YY.M.D",
 				separator: "."
 			} ),
-			"Valid date dateValidator (Format: YY.M.D)"
+			"Valid date (Format: YY.M.D)"
 		);
 		assert.ok(
 			!method( "5/06/13", {
 				format: "YY/M/D",
 				separator: "/"
 			} ),
-			"Invalid date dateValidator (Format: YY/M/D)"
+			"Invalid date (Format: YY/M/D)"
 		);
 		assert.ok(
 			!method( "14-09-29", {
 				format: "YY-M-D",
 				separator: "-"
 			} ),
-			"Invalid date dateValidator (Format: YY-M-D)"
+			"Invalid date (Format: YY-M-D)"
 		);
 		assert.ok(
 			!method( "75.2.01", {
 				format: "YY.M.D",
 				separator: "."
 			} ),
-			"Invalid date dateValidator (Format: YY.M.D)"
+			"Invalid date (Format: YY.M.D)"
 		);
 	} );
 
@@ -224,42 +224,42 @@
 				format: "D/M/YY",
 				separator: "/"
 			} ),
-			"Valid date dateValidator (Format: D/M/YY)"
+			"Valid date (Format: D/M/YY)"
 		);
 		assert.ok(
 			method( "29-8-10", {
 				format: "D-M-YY",
 				separator: "-"
 			} ),
-			"Valid date dateValidator (Format: D-M-YY)"
+			"Valid date (Format: D-M-YY)"
 		);
 		assert.ok(
 			method( "9.9.10", {
 				format: "D.M.YY",
 				separator: "."
 			} ),
-			"Valid date dateValidator (Format: D.M.YY)"
+			"Valid date (Format: D.M.YY)"
 		);
 		assert.ok(
 			!method( "11/10/1", {
 				format: "D/M/YY",
 				separator: "/"
 			} ),
-			"Invalid date dateValidator (Format: D/M/YY)"
+			"Invalid date (Format: D/M/YY)"
 		);
 		assert.ok(
 			!method( "31-02-14", {
 				format: "D-M-YY",
 				separator: "-"
 			} ),
-			"Invalid date dateValidator (Format: D-M-YY)"
+			"Invalid date (Format: D-M-YY)"
 		);
 		assert.ok(
 			!method( "01.11.14", {
 				format: "D.M.YY",
 				separator: "."
 			} ),
-			"Invalid date dateValidator (Format: D.M.YY)"
+			"Invalid date (Format: D.M.YY)"
 		);
 	} );
 
@@ -269,42 +269,42 @@
 				format: "M/D/YY",
 				separator: "/"
 			} ),
-			"Valid date dateValidator (Format: M/D/YY)"
+			"Valid date (Format: M/D/YY)"
 		);
 		assert.ok(
 			method( "11-5-05", {
 				format: "M-D-YY",
 				separator: "-"
 			} ),
-			"Valid date dateValidator (Format: M-D-YY)"
+			"Valid date (Format: M-D-YY)"
 		);
 		assert.ok(
 			method( "1.11.05", {
 				format: "M.D.YY",
 				separator: "."
 			} ),
-			"Valid date dateValidator (Format: M.D.YY)"
+			"Valid date (Format: M.D.YY)"
 		);
 		assert.ok(
 			!method( "12/31/9", {
 				format: "M/D/YY",
 				separator: "/"
 			} ),
-			"Invalid date dateValidator (Format: M/D/YY)"
+			"Invalid date (Format: M/D/YY)"
 		);
 		assert.ok(
 			!method( "02-27-04", {
 				format: "M-D-YY",
 				separator: "-"
 			} ),
-			"Invalid date dateValidator (Format: M-D-YY)"
+			"Invalid date (Format: M-D-YY)"
 		);
 		assert.ok(
 			!method( "10.01.03", {
 				format: "M.D.YY",
 				separator: "."
 			} ),
-			"Invalid date dateValidator (Format: M.D.YY)"
+			"Invalid date (Format: M.D.YY)"
 		);
 	} );
 
@@ -317,35 +317,35 @@
 				format: "YYYY-MM-DD HH:mm",
 				separator: "-"
 			} ),
-			"Valid date dateValidator (Format: YYYY-MM-DD HH:mm)"
+			"Valid date (Format: YYYY-MM-DD HH:mm)"
 		);
 		assert.ok(
 			!method( "1885-12-31 24:60", {
 				format: "YYYY-MM-DD HH:mm",
 				separator: "-"
 			} ),
-			"Invalid date dateValidator (Format: YYYY-MM-DD HH:mm)"
+			"Invalid date (Format: YYYY-MM-DD HH:mm)"
 		);
 		assert.ok(
 			!method( "1885-12-31 :", {
 				format: "YYYY-MM-DD HH:mm",
 				separator: "-"
 			} ),
-			"Invalid date dateValidator (Format: YYYY-MM-DD HH:mm)"
+			"Invalid date (Format: YYYY-MM-DD HH:mm)"
 		);
 		assert.ok(
 			!method( "1885-12-31 12:", {
 				format: "YYYY-MM-DD HH:mm",
 				separator: "-"
 			} ),
-			"Invalid date dateValidator (Format: YYYY-MM-DD HH:mm)"
+			"Invalid date (Format: YYYY-MM-DD HH:mm)"
 		);
 		assert.ok(
 			!method( "1885-12-31 :59", {
 				format: "YYYY-MM-DD HH:mm",
 				separator: "-"
 			} ),
-			"Invalid date dateValidator (Format: YYYY-MM-DD HH:mm)"
+			"Invalid date (Format: YYYY-MM-DD HH:mm)"
 		);
 
 		// Formats:
@@ -356,112 +356,112 @@
 				format: "YYYY-MM-DD hh:mm A",
 				separator: "-"
 			} ),
-			"Valid date dateValidator (Format: YYYY-MM-DD hh:mm A)"
+			"Valid date (Format: YYYY-MM-DD hh:mm A)"
 		);
 		assert.ok(
 			method( "1885-12-31 01:15 PM", {
 				format: "YYYY-MM-DD hh:mm A",
 				separator: "-"
 			} ),
-			"Valid date dateValidator (Format: YYYY-MM-DD hh:mm A)"
+			"Valid date (Format: YYYY-MM-DD hh:mm A)"
 		);
 		assert.ok(
 			method( "1885-12-31 11:59 am", {
 				format: "YYYY-MM-DD hh:mm a",
 				separator: "-"
 			} ),
-			"Valid date dateValidator (Format: YYYY-MM-DD hh:mm a)"
+			"Valid date (Format: YYYY-MM-DD hh:mm a)"
 		);
 		assert.ok(
 			method( "1885-12-31 12:00 pm", {
 				format: "YYYY-MM-DD hh:mm a",
 				separator: "-"
 			} ),
-			"Valid date dateValidator (Format: YYYY-MM-DD hh:mm a)"
+			"Valid date (Format: YYYY-MM-DD hh:mm a)"
 		);
 		assert.ok(
 			!method( "1885-12-31 13:00 AM", {
 				format: "YYYY-MM-DD hh:mm A",
 				separator: "-"
 			} ),
-			"Invalid date dateValidator (Format: YYYY-MM-DD hh:mm A)"
+			"Invalid date (Format: YYYY-MM-DD hh:mm A)"
 		);
 		assert.ok(
 			!method( "1885-12-31 21:15 PM", {
 				format: "YYYY-MM-DD hh:mm A",
 				separator: "-"
 			} ),
-			"Invalid date dateValidator (Format: YYYY-MM-DD hh:mm A)"
+			"Invalid date (Format: YYYY-MM-DD hh:mm A)"
 		);
 		assert.ok(
 			!method( "1885-12-31 01:00 A", {
 				format: "YYYY-MM-DD hh:mm A",
 				separator: "-"
 			} ),
-			"Invalid date dateValidator (Format: YYYY-MM-DD hh:mm A)"
+			"Invalid date (Format: YYYY-MM-DD hh:mm A)"
 		);
 		assert.ok(
 			!method( "1885-12-31 01:15 PP", {
 				format: "YYYY-MM-DD hh:mm A",
 				separator: "-"
 			} ),
-			"Invalid date dateValidator (Format: YYYY-MM-DD hh:mm A)"
+			"Invalid date (Format: YYYY-MM-DD hh:mm A)"
 		);
 		assert.ok(
 			!method( "1885-12-31 01:00 ", {
 				format: "YYYY-MM-DD hh:mm A",
 				separator: "-"
 			} ),
-			"Invalid date dateValidator (Format: YYYY-MM-DD hh:mm A)"
+			"Invalid date (Format: YYYY-MM-DD hh:mm A)"
 		);
 		assert.ok(
 			!method( "1885-12-31 01:15", {
 				format: "YYYY-MM-DD hh:mm A",
 				separator: "-"
 			} ),
-			"Invalid date dateValidator (Format: YYYY-MM-DD hh:mm A)"
+			"Invalid date (Format: YYYY-MM-DD hh:mm A)"
 		);
 		assert.ok(
 			!method( "1885-12-31 19:59 am", {
 				format: "YYYY-MM-DD hh:mm a",
 				separator: "-"
 			} ),
-			"Invalid date dateValidator (Format: YYYY-MM-DD hh:mm a)"
+			"Invalid date (Format: YYYY-MM-DD hh:mm a)"
 		);
 		assert.ok(
 			!method( "1885-12-31 15:00 pm", {
 				format: "YYYY-MM-DD hh:mm a",
 				separator: "-"
 			} ),
-			"Invalid date dateValidator (Format: YYYY-MM-DD hh:mm a)"
+			"Invalid date (Format: YYYY-MM-DD hh:mm a)"
 		);
 		assert.ok(
 			!method( "1885-12-31 01:59 a", {
 				format: "YYYY-MM-DD hh:mm a",
 				separator: "-"
 			} ),
-			"Invalid date dateValidator (Format: YYYY-MM-DD hh:mm a)"
+			"Invalid date (Format: YYYY-MM-DD hh:mm a)"
 		);
 		assert.ok(
 			!method( "1885-12-31 12:00 m", {
 				format: "YYYY-MM-DD hh:mm a",
 				separator: "-"
 			} ),
-			"Invalid date dateValidator (Format: YYYY-MM-DD hh:mm a)"
+			"Invalid date (Format: YYYY-MM-DD hh:mm a)"
 		);
 		assert.ok(
 			!method( "1885-12-31 01:59 ", {
 				format: "YYYY-MM-DD hh:mm a",
 				separator: "-"
 			} ),
-			"Invalid date dateValidator (Format: YYYY-MM-DD hh:mm a)"
+			"Invalid date (Format: YYYY-MM-DD hh:mm a)"
 		);
 		assert.ok(
 			!method( "1885-12-31 12:00", {
 				format: "YYYY-MM-DD hh:mm a",
 				separator: "-"
 			} ),
-			"Invalid date dateValidator (Format: YYYY-MM-DD hh:mm a)"
+			"Invalid date (Format: YYYY-MM-DD hh:mm a)"
 		);
 
 		// Format:
@@ -471,63 +471,63 @@
 				format: "YYYY-MM-DD HH:mm:ss",
 				separator: "-"
 			} ),
-			"Valid date dateValidator (Format: YYYY-MM-DD HH:mm:ss)"
+			"Valid date (Format: YYYY-MM-DD HH:mm:ss)"
 		);
 		assert.ok(
 			!method( "1885-12-31 22:60:59", {
 				format: "YYYY-MM-DD HH:mm:ss",
 				separator: "-"
 			} ),
-			"Invalid date dateValidator (Format: YYYY-MM-DD HH:mm:ss)"
+			"Invalid date (Format: YYYY-MM-DD HH:mm:ss)"
 		);
 		assert.ok(
 			!method( "1885-12-31 ::", {
 				format: "YYYY-MM-DD HH:mm:ss",
 				separator: "-"
 			} ),
-			"Invalid date dateValidator (Format: YYYY-MM-DD HH:mm:ss)"
+			"Invalid date (Format: YYYY-MM-DD HH:mm:ss)"
 		);
 		assert.ok(
 			!method( "1885-12-31 12::", {
 				format: "YYYY-MM-DD HH:mm:ss",
 				separator: "-"
 			} ),
-			"Invalid date dateValidator (Format: YYYY-MM-DD HH:mm:ss)"
+			"Invalid date (Format: YYYY-MM-DD HH:mm:ss)"
 		);
 		assert.ok(
 			!method( "1885-12-31 :15:", {
 				format: "YYYY-MM-DD HH:mm:ss",
 				separator: "-"
 			} ),
-			"Invalid date dateValidator (Format: YYYY-MM-DD HH:mm:ss)"
+			"Invalid date (Format: YYYY-MM-DD HH:mm:ss)"
 		);
 		assert.ok(
 			!method( "1885-12-31 ::10", {
 				format: "YYYY-MM-DD HH:mm:ss",
 				separator: "-"
 			} ),
-			"Invalid date dateValidator (Format: YYYY-MM-DD HH:mm:ss)"
+			"Invalid date (Format: YYYY-MM-DD HH:mm:ss)"
 		);
 		assert.ok(
 			!method( "1885-12-31 12:15:", {
 				format: "YYYY-MM-DD HH:mm:ss",
 				separator: "-"
 			} ),
-			"Invalid date dateValidator (Format: YYYY-MM-DD HH:mm:ss)"
+			"Invalid date (Format: YYYY-MM-DD HH:mm:ss)"
 		);
 		assert.ok(
 			!method( "1885-12-31 12::15", {
 				format: "YYYY-MM-DD HH:mm:ss",
 				separator: "-"
 			} ),
-			"Invalid date dateValidator (Format: YYYY-MM-DD HH:mm:ss)"
+			"Invalid date (Format: YYYY-MM-DD HH:mm:ss)"
 		);
 		assert.ok(
 			!method( "1885-12-31 :12:15", {
 				format: "YYYY-MM-DD HH:mm:ss",
 				separator: "-"
 			} ),
-			"Invalid date dateValidator (Format: YYYY-MM-DD HH:mm:ss)"
+			"Invalid date (Format: YYYY-MM-DD HH:mm:ss)"
 		);
 
 		// Formats:
@@ -538,84 +538,84 @@
 				format: "YYYY-MM-DD hh:mm:ss A",
 				separator: "-"
 			} ),
-			"Valid date dateValidator (Format: YYYY-MM-DD hh:mm:ss A)"
+			"Valid date (Format: YYYY-MM-DD hh:mm:ss A)"
 		);
 		assert.ok(
 			method( "1885-12-31 01:15:59 PM", {
 				format: "YYYY-MM-DD hh:mm:ss A",
 				separator: "-"
 			} ),
-			"Valid date dateValidator (Format: YYYY-MM-DD hh:mm:ss A)"
+			"Valid date (Format: YYYY-MM-DD hh:mm:ss A)"
 		);
 		assert.ok(
 			method( "1885-12-31 11:59:59 am", {
 				format: "YYYY-MM-DD hh:mm:ss a",
 				separator: "-"
 			} ),
-			"Valid date dateValidator (Format: YYYY-MM-DD hh:mm:ss a)"
+			"Valid date (Format: YYYY-MM-DD hh:mm:ss a)"
 		);
 		assert.ok(
 			method( "1885-12-31 12:00:59 pm", {
 				format: "YYYY-MM-DD hh:mm:ss a",
 				separator: "-"
 			} ),
-			"Valid date dateValidator (Format: YYYY-MM-DD hh:mm:ss a)"
+			"Valid date (Format: YYYY-MM-DD hh:mm:ss a)"
 		);
 		assert.ok(
 			!method( "1885-12-31 13:00:19 AM", {
 				format: "YYYY-MM-DD hh:mm:ss A",
 				separator: "-"
 			} ),
-			"Invalid date dateValidator (Format: YYYY-MM-DD hh:mm:ss A)"
+			"Invalid date (Format: YYYY-MM-DD hh:mm:ss A)"
 		);
 		assert.ok(
 			!method( "1885-12-31 21:15:19 PM", {
 				format: "YYYY-MM-DD hh:mm:ss A",
 				separator: "-"
 			} ),
-			"Invalid date dateValidator (Format: YYYY-MM-DD hh:mm:ss A)"
+			"Invalid date (Format: YYYY-MM-DD hh:mm:ss A)"
 		);
 		assert.ok(
 			!method( "1885-12-31 01:00:19 A", {
 				format: "YYYY-MM-DD hh:mm:ss A",
 				separator: "-"
 			} ),
-			"Invalid date dateValidator (Format: YYYY-MM-DD hh:mm:ss A)"
+			"Invalid date (Format: YYYY-MM-DD hh:mm:ss A)"
 		);
 		assert.ok(
 			!method( "1885-12-31 01:15:19 PP", {
 				format: "YYYY-MM-DD hh:mm:ss A",
 				separator: "-"
 			} ),
-			"Invalid date dateValidator (Format: YYYY-MM-DD hh:mm:ss A)"
+			"Invalid date (Format: YYYY-MM-DD hh:mm:ss A)"
 		);
 		assert.ok(
 			!method( "1885-12-31 19:59:19 am", {
 				format: "YYYY-MM-DD hh:mm:ss a",
 				separator: "-"
 			} ),
-			"Invalid date dateValidator (Format: YYYY-MM-DD hh:mm:ss a)"
+			"Invalid date (Format: YYYY-MM-DD hh:mm:ss a)"
 		);
 		assert.ok(
 			!method( "1885-12-31 15:00:19 pm", {
 				format: "YYYY-MM-DD hh:mm:ss a",
 				separator: "-"
 			} ),
-			"Invalid date dateValidator (Format: YYYY-MM-DD hh:mm:ss a)"
+			"Invalid date (Format: YYYY-MM-DD hh:mm:ss a)"
 		);
 		assert.ok(
 			!method( "1885-12-31 01:59:19 a", {
 				format: "YYYY-MM-DD hh:mm:ss a",
 				separator: "-"
 			} ),
-			"Invalid date dateValidator (Format: YYYY-MM-DD hh:mm:ss a)"
+			"Invalid date (Format: YYYY-MM-DD hh:mm:ss a)"
 		);
 		assert.ok(
 			!method( "1885-12-31 12:00:19 m", {
 				format: "YYYY-MM-DD hh:mm:ss a",
 				separator: "-"
 			} ),
-			"Invalid date dateValidator (Format: YYYY-MM-DD hh:mm:ss a)"
+			"Invalid date (Format: YYYY-MM-DD hh:mm:ss a)"
 		);
 
 		// Format: (we will test only one format)
@@ -625,28 +625,28 @@
 				format: "YYYY-MM-DD H:m:s",
 				separator: "-"
 			} ),
-			"Valid date dateValidator (Format: YYYY-MM-DD H:m:s)"
+			"Valid date (Format: YYYY-MM-DD H:m:s)"
 		);
 		assert.ok(
 			!method( "1885-12-31 01:13:20", {
 				format: "YYYY-MM-DD H:m:s",
 				separator: "-"
 			} ),
-			"Invalid date dateValidator (Format: YYYY-MM-DD H:m:s)"
+			"Invalid date (Format: YYYY-MM-DD H:m:s)"
 		);
 		assert.ok(
 			!method( "1885-12-31 22:09:59", {
 				format: "YYYY-MM-DD H:m:s",
 				separator: "-"
 			} ),
-			"Invalid date dateValidator (Format: YYYY-MM-DD H:m:s)"
+			"Invalid date (Format: YYYY-MM-DD H:m:s)"
 		);
 		assert.ok(
 			!method( "1885-12-31 23:13:02", {
 				format: "YYYY-MM-DD H:m:s",
 				separator: "-"
 			} ),
-			"Invalid date dateValidator (Format: YYYY-MM-DD H:m:s)"
+			"Invalid date (Format: YYYY-MM-DD H:m:s)"
 		);
 
 		// Format: (we will test only one format)
@@ -656,21 +656,21 @@
 				format: "YYYY-MM-DD h:m:s",
 				separator: "-"
 			} ),
-			"Valid date dateValidator (Format: YYYY-MM-DD h:m:s)"
+			"Valid date (Format: YYYY-MM-DD h:m:s)"
 		);
 		assert.ok(
 			!method( "1885-12-31 01:13:20", {
 				format: "YYYY-MM-DD h:m:s",
 				separator: "-"
 			} ),
-			"Invalid date dateValidator (Format: YYYY-MM-DD h:m:s)"
+			"Invalid date (Format: YYYY-MM-DD h:m:s)"
 		);
 		assert.ok(
 			!method( "1885-12-31 22:29:59", {
 				format: "YYYY-MM-DD h:m:s",
 				separator: "-"
 			} ),
-			"Invalid date dateValidator (Format: YYYY-MM-DD h:m:s)"
+			"Invalid date (Format: YYYY-MM-DD h:m:s)"
 		);
 	} );
 
@@ -681,13 +681,13 @@
 			method( "29/12/2012", {
 				minDate: "31/01/2012"
 			} ),
-			"Valid min date dateValidator (Using default format & separator)"
+			"Valid min date (Using default format & separator)"
 		);
 		assert.ok(
 			!method( "15/11/2011", {
 				minDate: "31/03/2012"
 			} ),
-			"Invalid min date dateValidator (Using default format & separator)"
+			"Invalid min date (Using default format & separator)"
 		);
 
 		// Using a date object
@@ -695,13 +695,13 @@
 			method( "29/12/2012", {
 				minDate: new Date( 2012, 3, 31 )
 			} ),
-			"Valid min date object dateValidator (Using default format & separator)"
+			"Valid min date object (Using default format & separator)"
 		);
 		assert.ok(
 			!method( "15/11/2011", {
 				minDate: new Date( 2014, 1, 18 )
 			} ),
-			"Invalid min date object dateValidator (Using default format & separator)"
+			"Invalid min date object (Using default format & separator)"
 		);
 
 		// Using other formats & date string
@@ -711,7 +711,7 @@
 				separator: "/",
 				minDate: "01/31/2012"
 			} ),
-			"Valid min date dateValidator (Format: MM/DD/YYYY)"
+			"Valid min date (Format: MM/DD/YYYY)"
 		);
 		assert.ok(
 			method( "2007-12-31", {
@@ -719,7 +719,7 @@
 				separator: "-",
 				minDate: "2007-01-31"
 			} ),
-			"Valid min date dateValidator (Format: YYYY-MM-DD)"
+			"Valid min date (Format: YYYY-MM-DD)"
 		);
 		assert.ok(
 			method( "12/29/2012 15:00", {
@@ -727,7 +727,7 @@
 				separator: "/",
 				minDate: "01/31/2012 12:00"
 			} ),
-			"Valid min date dateValidator (Format: MM/DD/YYYY HH:mm)"
+			"Valid min date (Format: MM/DD/YYYY HH:mm)"
 		);
 		assert.ok(
 			method( "2007-12-31 23:59", {
@@ -735,7 +735,7 @@
 				separator: "-",
 				minDate: "2007-01-31 23:59"
 			} ),
-			"Valid min date dateValidator (Format: YYYY-MM-DD HH:mm)"
+			"Valid min date (Format: YYYY-MM-DD HH:mm)"
 		);
 		assert.ok(
 			method( "12/29/2012 15:00:00", {
@@ -743,7 +743,7 @@
 				separator: "/",
 				minDate: "01/31/2012 12:00:00"
 			} ),
-			"Valid min date dateValidator (Format: MM/DD/YYYY HH:mm:ss)"
+			"Valid min date (Format: MM/DD/YYYY HH:mm:ss)"
 		);
 		assert.ok(
 			method( "2007-12-31 23:59:59", {
@@ -751,7 +751,7 @@
 				separator: "-",
 				minDate: "2007-01-31 23:59:59"
 			} ),
-			"Valid min date dateValidator (Format: YYYY-MM-DD HH:mm:ss)"
+			"Valid min date (Format: YYYY-MM-DD HH:mm:ss)"
 		);
 		assert.ok(
 			!method( "12/29/2011", {
@@ -759,7 +759,7 @@
 				separator: "/",
 				minDate: "01/31/2012"
 			} ),
-			"Invalid min date dateValidator (Format: MM/DD/YYYY)"
+			"Invalid min date (Format: MM/DD/YYYY)"
 		);
 		assert.ok(
 			!method( "2008-12-31", {
@@ -767,7 +767,7 @@
 				separator: "-",
 				minDate: "2010-01-31"
 			} ),
-			"Invalid min date dateValidator (Format: YYYY-MM-DD)"
+			"Invalid min date (Format: YYYY-MM-DD)"
 		);
 		assert.ok(
 			!method( "12/29/2011 15:00", {
@@ -775,7 +775,7 @@
 				separator: "/",
 				minDate: "01/31/2012 12:00"
 			} ),
-			"Invalid min date dateValidator (Format: MM/DD/YYYY HH:mm)"
+			"Invalid min date (Format: MM/DD/YYYY HH:mm)"
 		);
 		assert.ok(
 			!method( "2007-01-30 23:59", {
@@ -783,7 +783,7 @@
 				separator: "-",
 				minDate: "2007-01-31 23:59"
 			} ),
-			"Invalid min date dateValidator (Format: YYYY-MM-DD HH:mm)"
+			"Invalid min date (Format: YYYY-MM-DD HH:mm)"
 		);
 		assert.ok(
 			!method( "01/31/2012 11:59:59", {
@@ -791,7 +791,7 @@
 				separator: "/",
 				minDate: "01/31/2012 12:00:00"
 			} ),
-			"Invalid min date dateValidator (Format: MM/DD/YYYY HH:mm:ss)"
+			"Invalid min date (Format: MM/DD/YYYY HH:mm:ss)"
 		);
 		assert.ok(
 			!method( "2007-01-31 23:59:58", {
@@ -799,7 +799,7 @@
 				separator: "-",
 				minDate: "2007-01-31 23:59:59"
 			} ),
-			"Invalid min date dateValidator (Format: YYYY-MM-DD HH:mm:ss)"
+			"Invalid min date (Format: YYYY-MM-DD HH:mm:ss)"
 		);
 
 		// Using other formats & date object
@@ -809,7 +809,7 @@
 				separator: "/",
 				minDate: new Date( 2012, 0, 31 )
 			} ),
-			"Valid min date object dateValidator (Format: MM/DD/YYYY)"
+			"Valid min date object (Format: MM/DD/YYYY)"
 		);
 		assert.ok(
 			method( "2007-12-31", {
@@ -817,7 +817,7 @@
 				separator: "-",
 				minDate: new Date( 2007, 0, 31 )
 			} ),
-			"Valid min date object dateValidator (Format: YYYY-MM-DD)"
+			"Valid min date object (Format: YYYY-MM-DD)"
 		);
 		assert.ok(
 			!method( "12/29/2011", {
@@ -825,7 +825,7 @@
 				separator: "/",
 				minDate: new Date( 2012, 1, 15 )
 			} ),
-			"Invalid min date object dateValidator (Format: MM/DD/YYYY)"
+			"Invalid min date object (Format: MM/DD/YYYY)"
 		);
 		assert.ok(
 			!method( "2008-12-31", {
@@ -833,7 +833,7 @@
 				separator: "-",
 				minDate: new Date( 2009, 11, 31 )
 			} ),
-			"Invalid min date object dateValidator (Format: YYYY-MM-DD)"
+			"Invalid min date object (Format: YYYY-MM-DD)"
 		);
 	} );
 
@@ -844,13 +844,13 @@
 			method( "29/12/2014", {
 				maxDate: "31/01/2015"
 			} ),
-			"Valid max date dateValidator (Using default format & separator)"
+			"Valid max date (Using default format & separator)"
 		);
 		assert.ok(
 			!method( "15/11/2013", {
 				maxDate: "31/03/2012"
 			} ),
-			"Invalid max date dateValidator (Using default format & separator)"
+			"Invalid max date (Using default format & separator)"
 		);
 
 		// Using a date object
@@ -858,13 +858,13 @@
 			method( "29/12/2014", {
 				maxDate: new Date( 2015, 1, 21 )
 			} ),
-			"Valid max date object dateValidator (Using default format & separator)"
+			"Valid max date object (Using default format & separator)"
 		);
 		assert.ok(
 			!method( "15/11/2013", {
 				maxDate: new Date( 2012, 2, 15 )
 			} ),
-			"Invalid max date object dateValidator (Using default format & separator)"
+			"Invalid max date object (Using default format & separator)"
 		);
 
 		// Using other formats & date string
@@ -874,7 +874,7 @@
 				separator: "/",
 				maxDate: "31/01/2014"
 			} ),
-			"Valid max date dateValidator (Format: DD/MM/YYYY)"
+			"Valid max date (Format: DD/MM/YYYY)"
 		);
 		assert.ok(
 			method( "2013-12-31", {
@@ -882,7 +882,7 @@
 				separator: "-",
 				maxDate: "2014-05-31"
 			} ),
-			"Valid max date dateValidator (Format: YYYY-MM-DD)"
+			"Valid max date (Format: YYYY-MM-DD)"
 		);
 		assert.ok(
 			method( "12/29/2011 15:00", {
@@ -890,7 +890,7 @@
 				separator: "/",
 				maxDate: "01/31/2012 12:00"
 			} ),
-			"Valid max date dateValidator (Format: MM/DD/YYYY HH:mm)"
+			"Valid max date (Format: MM/DD/YYYY HH:mm)"
 		);
 		assert.ok(
 			method( "2006-12-31 23:59", {
@@ -898,7 +898,7 @@
 				separator: "-",
 				maxDate: "2007-01-31 23:59"
 			} ),
-			"Valid max date dateValidator (Format: YYYY-MM-DD HH:mm)"
+			"Valid max date (Format: YYYY-MM-DD HH:mm)"
 		);
 		assert.ok(
 			method( "12/29/2011 15:00:00", {
@@ -906,7 +906,7 @@
 				separator: "/",
 				maxDate: "01/31/2012 12:00:00"
 			} ),
-			"Valid max date dateValidator (Format: MM/DD/YYYY HH:mm:ss)"
+			"Valid max date (Format: MM/DD/YYYY HH:mm:ss)"
 		);
 		assert.ok(
 			method( "2007-01-30 23:59:59", {
@@ -914,7 +914,7 @@
 				separator: "-",
 				maxnDate: "2007-01-31 23:59:59"
 			} ),
-			"Valid max date dateValidator (Format: YYYY-MM-DD HH:mm:ss)"
+			"Valid max date (Format: YYYY-MM-DD HH:mm:ss)"
 		);
 		assert.ok(
 			!method( "29/12/2015", {
@@ -922,7 +922,7 @@
 				separator: "/",
 				maxDate: "31/01/2012"
 			} ),
-			"Invalid max date dateValidator (Format: DD/MM/YYYY)"
+			"Invalid max date (Format: DD/MM/YYYY)"
 		);
 		assert.ok(
 			!method( "2015-02-19", {
@@ -930,7 +930,7 @@
 				separator: "-",
 				maxDate: "2014-05-31"
 			} ),
-			"Invalid max date dateValidator (Format: YYYY-MM-DD)"
+			"Invalid max date (Format: YYYY-MM-DD)"
 		);
 		assert.ok(
 			!method( "12/31/2012 12:00", {
@@ -938,7 +938,7 @@
 				separator: "/",
 				maxDate: "01/31/2012 12:00"
 			} ),
-			"Invalid max date dateValidator (Format: MM/DD/YYYY HH:mm)"
+			"Invalid max date (Format: MM/DD/YYYY HH:mm)"
 		);
 		assert.ok(
 			!method( "2007-01-31 23:59", {
@@ -946,7 +946,7 @@
 				separator: "-",
 				maxDate: "2007-01-31 23:58"
 			} ),
-			"Invalid max date dateValidator (Format: YYYY-MM-DD HH:mm)"
+			"Invalid max date (Format: YYYY-MM-DD HH:mm)"
 		);
 		assert.ok(
 			!method( "01/31/2012 12:00:00", {
@@ -954,7 +954,7 @@
 				separator: "/",
 				maxDate: "01/31/2012 11:59:59"
 			} ),
-			"Invalid max date dateValidator (Format: MM/DD/YYYY HH:mm:ss)"
+			"Invalid max date (Format: MM/DD/YYYY HH:mm:ss)"
 		);
 		assert.ok(
 			!method( "2007-01-31 23:59:59", {
@@ -962,7 +962,7 @@
 				separator: "-",
 				maxDate: "2007-01-31 23:59:58"
 			} ),
-			"Invalid max date dateValidator (Format: YYYY-MM-DD HH:mm:ss)"
+			"Invalid max date (Format: YYYY-MM-DD HH:mm:ss)"
 		);
 
 		// Using other formats & date object
@@ -972,7 +972,7 @@
 				separator: "/",
 				maxDate: new Date( 2014, 0, 31 )
 			} ),
-			"Valid max date object dateValidator (Format: MM/DD/YYYY)"
+			"Valid max date object (Format: MM/DD/YYYY)"
 		);
 		assert.ok(
 			method( "2011-12-31", {
@@ -980,7 +980,7 @@
 				separator: "-",
 				maxDate: new Date( 2013, 0, 31 )
 			} ),
-			"Valid max date object dateValidator (Format: YYYY-MM-DD)"
+			"Valid max date object (Format: YYYY-MM-DD)"
 		);
 		assert.ok(
 			!method( "12/29/2013", {
@@ -988,7 +988,7 @@
 				separator: "/",
 				maxDate: new Date( 2012, 1, 15 )
 			} ),
-			"Invalid max date object dateValidator (Format: MM/DD/YYYY)"
+			"Invalid max date object (Format: MM/DD/YYYY)"
 		);
 		assert.ok(
 			!method( "2011-12-31", {
@@ -996,7 +996,7 @@
 				separator: "-",
 				maxDate: new Date( 2010, 11, 31 )
 			} ),
-			"Invalid max date object dateValidator (Format: YYYY-MM-DD)"
+			"Invalid max date object (Format: YYYY-MM-DD)"
 		);
 	} );
 
@@ -1024,14 +1024,14 @@
 				minDate: new Date( 2012, 0, 31 ),
 				maxDate: new Date( 2014, 0, 31 )
 			} ),
-			"Valid range date object dateValidator (Using default format & separator)"
+			"Valid range date object (Using default format & separator)"
 		);
 		assert.ok(
 			!method( "15/11/2013", {
 				minDate: new Date( 2012, 2, 2012 ),
 				maxDate: new Date( 2013, 2, 31 )
 			} ),
-			"Invalid range date object dateValidator (Using default format & separator)"
+			"Invalid range date object (Using default format & separator)"
 		);
 
 		// Using other formats & date string
@@ -1042,7 +1042,7 @@
 				minDate: "31/01/2012",
 				maxDate: "31/01/2014"
 			} ),
-			"Valid range date dateValidator (Format: DD/MM/YYYY)"
+			"Valid range date (Format: DD/MM/YYYY)"
 		);
 		assert.ok(
 			method( "2013-12-31", {
@@ -1051,7 +1051,7 @@
 				minDate: "2013-05-31",
 				maxDate: "2014-05-31"
 			} ),
-			"Valid range date dateValidator (Format: YYYY-MM-DD)"
+			"Valid range date (Format: YYYY-MM-DD)"
 		);
 		assert.ok(
 			!method( "29/12/2015", {
@@ -1060,7 +1060,7 @@
 				minDate: "31/01/2012",
 				maxDate: "31/05/2012"
 			} ),
-			"Invalid range date dateValidator (Format: DD/MM/YYYY)"
+			"Invalid range date (Format: DD/MM/YYYY)"
 		);
 		assert.ok(
 			!method( "2012-12-31", {
@@ -1069,7 +1069,7 @@
 				minDate: "2013-05-31",
 				maxDate: "2014-05-31"
 			} ),
-			"Valid range date dateValidator (Format: YYYY-MM-DD)"
+			"Valid range date (Format: YYYY-MM-DD)"
 		);
 
 		// Using other formats & date object
@@ -1080,7 +1080,7 @@
 				minDate: new Date( 2012, 0, 31 ),
 				maxDate: new Date( 2014, 0, 31 )
 			} ),
-			"Valid range date object dateValidator (Format: DD/MM/YYYY)"
+			"Valid range date object (Format: DD/MM/YYYY)"
 		);
 		assert.ok(
 			method( "2013-12-31", {
@@ -1089,7 +1089,7 @@
 				minDate: new Date( 2013, 4, 21 ),
 				maxDate: new Date( 2014, 4, 21 )
 			} ),
-			"Valid range date object dateValidator (Format: YYYY-MM-DD)"
+			"Valid range date object (Format: YYYY-MM-DD)"
 		);
 		assert.ok(
 			!method( "12/29/2015", {
@@ -1098,7 +1098,7 @@
 				minDate: new Date( 2012, 0, 25 ),
 				maxDate: new Date( 2012, 4, 29 )
 			} ),
-			"Invalid range date object dateValidator (Format: DD/MM/YYYY)"
+			"Invalid range date object (Format: DD/MM/YYYY)"
 		);
 		assert.ok(
 			!method( "2012-12-31", {
@@ -1107,7 +1107,7 @@
 				minDate: new Date( 2013, 4, 31 ),
 				maxDate: new Date( 2014, 4, 31 )
 			} ),
-			"Valid range date object dateValidator (Format: YYYY-MM-DD)"
+			"Valid range date object (Format: YYYY-MM-DD)"
 		);
 	} );
 
