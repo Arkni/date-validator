@@ -535,98 +535,74 @@
 		//    - separator: /
 		options = $.extend( {}, { format: "DD/MM/YYYY", separator: "/" }, options );
 
-		var $this = this;
-		var format, separator;
-		var date, minDate, maxDate;
+		var format = options.format;
+		var separator = options.separator;
 		var valid = true;
+		var date, minDate, maxDate;
 		var messages = $.validator.messages.dateValidatorMessages;
 
-		// If the format is an array of formats, then split each format (element) of the array
-		if ( $.isArray( options.format ) ) {
-			$.each( options.format, function( index, format ) {
-				valid = $.validator.methods.dateValidator.call( $this, value, element, {
-					format: format,
-					separator: options.separator,
-					minDate: options.minDate,
-					maxDate: options.maxDate
-				} );
+		// Set the default message
+		$.validator.messages.dateValidator = messages[ "default" ]( format );
 
-				if ( valid ) {
+		// Check length of eatch section
+		if ( !checkLengths( value, format, separator ) ) {
+			return false;
+		}
 
-					// To exit the $.each
-					return false;
-				}
-			} );
-		} else {
-			format    = options.format;
-			separator = options.separator;
+		// Parse the value and the format
+		var data = parse( value, format, separator );
 
-			// Set the default message
-			$.validator.messages.dateValidator = messages[ "default" ]( format );
+		// Check validity of the date and the time sections
+		if ( !dateHelper( data ) || !timeHelper( data ) ) {
+			return false;
+		}
 
-			// Check length of eatch section
-			if ( !checkLengths( value, format, separator ) ) {
-				return false;
-			}
+		date = getDate( value, format, separator );
 
-			// Parse the value and the format
-			var data = parse( value, format, separator );
+		// Check if options.minDate was set
+		if ( options.minDate ) {
+			minDate = options.minDate instanceof Date ?
+				options.minDate : getDate( options.minDate, format, separator );
+		}
 
-			// Check validity of the date and the time sections
-			if ( !dateHelper( data ) || !timeHelper( data ) ) {
-				return false;
-			}
+		// Check if maxDate was set
+		if ( options.maxDate ) {
+			maxDate = options.maxDate instanceof Date ?
+				options.maxDate : getDate( options.maxDate, format, separator );
+		}
 
-			date = getDate( value, format, separator );
+		// Test for minDate and maxDate
+		switch ( true ) {
+		case ( options.minDate && !options.maxDate ):
+			valid = date.getTime() >= minDate.getTime();
 
-			// Check if options.minDate was set
-			if ( options.minDate ) {
-				minDate = options.minDate instanceof Date ?
-					options.minDate : getDate( options.minDate, format, separator );
-			}
+			// Format the minDate if it is an instance of Date object
+			minDate = options.minDate instanceof Date ? dateFormater( minDate, format ) : options.minDate;
 
-			// Check if maxDate was set
-			if ( options.maxDate ) {
-				maxDate = options.maxDate instanceof Date ?
-					options.maxDate : getDate( options.maxDate, format, separator );
-			}
+			// Set the new error message based on the minDate value.
+			$.validator.messages.dateValidator = messages.minDate( minDate );
+			break;
 
-			// Test for minDate and maxDate
-			switch ( true ) {
-			case ( options.minDate && !options.maxDate ):
-				valid = date.getTime() >= minDate.getTime();
+		case ( options.maxDate && !options.minDate ):
+			valid = date.getTime() <= maxDate.getTime();
 
-				// Format the minDate if it is an instance of Date object
-				minDate = options.minDate instanceof Date ? dateFormater( minDate, format ) : options.minDate;
+			// Format the maxDate if it is an instance of Date object
+			maxDate = options.maxDate instanceof Date ? dateFormater( maxDate, format ) : options.maxDate;
 
-				// Set the new error message based on the minDate value.
-				$.validator.messages.dateValidator = messages.minDate( minDate );
-				break;
+			// Set the new error message based on the maxDate value.
+			$.validator.messages.dateValidator = messages.maxDate( maxDate );
+			break;
 
-			case ( options.maxDate && !options.minDate ):
-				valid = date.getTime() <= maxDate.getTime();
+		case ( !!options.minDate && !!options.maxDate ):
+			valid = date.getTime() >= minDate.getTime() && date.getTime() <= maxDate.getTime();
 
-				// Format the maxDate if it is an instance of Date object
-				maxDate = options.maxDate instanceof Date ? dateFormater( maxDate, format ) : options.maxDate;
+			// Format the minDate & the maxDate if they are instances of Date object
+			minDate = options.minDate instanceof Date ? dateFormater( minDate, format ) : options.minDate;
+			maxDate = options.maxDate instanceof Date ? dateFormater( maxDate, format ) : options.maxDate;
 
-				// Set the new error message based on the maxDate value.
-				$.validator.messages.dateValidator = messages.maxDate( maxDate );
-				break;
-
-			case ( !!options.minDate && !!options.maxDate ):
-				valid = date.getTime() >= minDate.getTime() && date.getTime() <= maxDate.getTime();
-
-				// Format the minDate & the maxDate if they are instances of Date object
-				minDate = options.minDate instanceof Date ? dateFormater( minDate, format ) : options.minDate;
-				maxDate = options.maxDate instanceof Date ? dateFormater( maxDate, format ) : options.maxDate;
-
-				// Set the new error message based on the minDate & maxDate values.
-				$.validator.messages.dateValidator = messages.range( minDate, maxDate );
-				break;
-
-			default:
-				break;
-			}
+			// Set the new error message based on the minDate & maxDate values.
+			$.validator.messages.dateValidator = messages.range( minDate, maxDate );
+			break;
 		}
 
 		return valid;
