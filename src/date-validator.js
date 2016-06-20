@@ -140,7 +140,6 @@
 	 */
 	function getDate( date, format, separator ) {
 		var result = parse( date, format, separator );
-		var timeFormat = result.format.time;
 		var amOrPm  = result.tokens.amOrPm;
 		var year    = getYear( result.year );
 		var month   = result.month;
@@ -149,15 +148,13 @@
 		var minutes = result.minutes || 0;
 		var seconds = result.seconds || 0;
 
-		if ( timeFormat ) {
-			if ( amOrPm ) {
-				if ( /am/i.test( amOrPm ) && hours === 12 ) {
-					hours = +hours - 12;
-				}
+		if ( result.format.time && amOrPm ) {
+			if ( /am/i.test( amOrPm ) && hours === 12 ) {
+				hours = +hours - 12;
+			}
 
-				if ( /pm/i.test( amOrPm ) && hours < 12 ) {
-					hours = +hours + 12;
-				}
+			if ( /pm/i.test( amOrPm ) && hours < 12 ) {
+				hours = +hours + 12;
 			}
 		}
 
