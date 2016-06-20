@@ -2,18 +2,17 @@
 	"boss": true,
 	"curly": true,
 	"eqeqeq": true,
-	"eqnull": true,
 	"expr": true,
 	"immed": true,
 	"noarg": true,
+	"quotmark": "double",
 	"undef": true,
 	"unused": true,
-	"es3": true,
 
-	"jquery": true,
 	"browser": true,
+	"jquery": true,
 
 	"globals": {
-		"console": true
+		"QUnit": true
 	}
 }
