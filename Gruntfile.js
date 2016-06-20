@@ -50,13 +50,12 @@ module.exports = function( grunt ) {
 					pretty: true
 				},
 				src: [
-					"dist/*.js",
-					"Gruntfile.js",
-					"lib/*.*",
-					"package.json",
-					"README.md",
 					"src/*.*",
-					"test/**/*.*"
+					"dist/*.js",
+					"test/*.*",
+					"Gruntfile.js",
+					"package.json",
+					"README.md"
 				]
 			}
 		},
@@ -90,24 +89,12 @@ module.exports = function( grunt ) {
 		},
 		jscs: {
 			all: [ "<%= jshint.core.src %>", "<%= jshint.test.src %>", "<%= jshint.grunt.src %>" ]
-		},
-		replace: {
-			dist: {
-				src: "dist/*.min.js",
-				overwrite: true,
-				replacements: [
-					{
-						from: "./date-validator",
-						to: "./date-validator.min"
-					}
-				]
-			}
 		}
 	} );
 
 	require( "load-grunt-tasks" )( grunt );
 
 	grunt.registerTask( "default", [ "concat", "jscs", "jshint", "qunit" ] );
-	grunt.registerTask( "release", [ "default", "uglify", "replace", "compress" ] );
+	grunt.registerTask( "release", [ "default", "uglify", "compress" ] );
 	grunt.registerTask( "start", [ "concat", "watch" ] );
 };
