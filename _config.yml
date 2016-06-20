@@ -6,7 +6,7 @@ relative_permalinks:  false
 
 source:               .
 destination:          ../dateValidatorDocs
-exclude:              ['node_modules', 'dist', '*.less']
+exclude:              ['node_modules', 'dist']
 include:              ['.gitignore']
 timezone:             Africa/Casablanca
 
