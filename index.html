@@ -18,9 +18,8 @@ title: Date-validator by Arkni Brahim
                 <tbody>
                     <tr>
                         <td><code>format</code><sup>*</sup></td>
-                        <td>String | Array</td>
-                        <td>The date format, can be a string or an array of strings.<br/>
-                            It is <code>DD/MM/YYYY</code>, by default</td>
+                        <td>String</td>
+                        <td>The date format. It is <code>DD/MM/YYYY</code> by default</td>
                     </tr>
                     <tr>
                         <td><code>maxDate</code></td>
@@ -37,7 +36,7 @@ title: Date-validator by Arkni Brahim
                         <td>String</td>
                         <td>Used to separate the day, month, and year.<br/>
                             Most popular examples are a slash (<code>/</code>), hyphen (<code>-</code>), or dot (<code>.</code>)<br/>
-                            It is <code>/</code>, by default.</td>
+                            It is <code>/</code> by default.</td>
                     </tr>
                 </tbody>
             </table>
@@ -191,9 +190,6 @@ $.extend($.validator.messages, {
         <h3 id="date-time-example">Using custom format & separator (date time value)</h3><br/>
         {% include examples/date-time.html %}
 
-        <h3 id="array-format-example">Using an array of formats</h3><br/>
-        {% include examples/array-format.html %}
-
         <h3 id="min-max-example">Using minDate & maxDate options</h3><br/>
         {% include examples/min-max-date.html %}
 
@@ -208,8 +204,10 @@ $.extend($.validator.messages, {
 dateValidator: {
     format: 'YYYY-MM-DD hh:mm:ss A',
     separator: '-',
+
     // This will be converted to '2014-01-01 12:00:00 PM'
     minDate: new Date( 2014, 0, 1, 12, 0, 0 ),
+
     // If you want to set maxDate to '2016-01-01 11:59:59 PM', please
     // don't use 'new Date( 2016, 0, 1, 11, 59, 59)', use this instead.
     maxDate: new Date( 2016, 0, 1, 23, 59, 59 )
